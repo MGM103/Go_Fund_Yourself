@@ -19,3 +19,6 @@ lib/
 
 #Local vs code settings
 .vscode
+
+# Makefile
+makefile
