@@ -3,8 +3,8 @@
 pragma solidity ^0.8.18;
 
 import {Test, console} from "forge-std/Test.sol";
-import {DeployFundMe} from "../script/DeployFundMe.s.sol";
-import {FundMe} from "../src/FundMe.sol";
+import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
+import {FundMe} from "../../src/FundMe.sol";
 
 contract FundMeTest is Test {
     FundMe fundMe;
@@ -17,7 +17,7 @@ contract FundMeTest is Test {
 
     function setUp() external {
         DeployFundMe deployFundMe = new DeployFundMe();
-        fundMe = deployFundMe.deploy();
+        fundMe = deployFundMe.run();
         vm.deal(USER, STARTING_BAL);
     }
 

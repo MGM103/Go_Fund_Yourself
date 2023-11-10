@@ -7,7 +7,7 @@ import {HelperConfig} from "./HelperConfig.s.sol";
 import {FundMe} from "../src/FundMe.sol";
 
 contract DeployFundMe is Script {
-    function deploy() external returns (FundMe) {
+    function run() external returns (FundMe) {
         //Before startBroadcast simulated transaction and do not have to pay gas
         HelperConfig helperConfig = new HelperConfig();
         address ethUsdPriceFeed = helperConfig.activeNetworkConfig();
