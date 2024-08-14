@@ -1,17 +1,26 @@
 <nav>
-    <ul>
-        <li><a>I am a link</a></li>
-    </ul>
-    <button>Connect</button>
+	<ul>
+		<li><a>I am a link</a></li>
+	</ul>
+	<button>Connect</button>
 </nav>
 
-<style>
-    nav {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        max-width: 950px;
-        align-items: center;
-        margin: 0 auto;
-    }
+<style scoped lang="scss">
+	nav {
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		margin: 0 auto;
+		max-width: 950px;
+		width: 100%;
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+
+		a {
+			text-decoration: none;
+		}
+	}
 </style>
