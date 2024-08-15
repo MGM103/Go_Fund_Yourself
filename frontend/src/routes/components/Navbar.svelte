@@ -1,7 +1,12 @@
 <nav>
-	<ul>
-		<li><a>I am a link</a></li>
-	</ul>
+	<div class="title-and-links">
+		<h2><a id="nav-logo" href="/">Go Fund Yourself</a></h2>
+		<ul>
+			<li><a href="/fund-yourself">Fund yourself</a></li>
+			<li><a href="/fund-someone">Fund someone</a></li>
+		</ul>
+	</div>
+
 	<button>Connect</button>
 </nav>
 
@@ -9,18 +14,54 @@
 	nav {
 		align-items: center;
 		display: flex;
+		flex-direction: row;
 		justify-content: space-between;
-		margin: 0 auto;
-		max-width: 950px;
+		margin: 0 auto 54px auto;
+		max-width: 1080px;
+		position: sticky;
 		width: 100%;
 
-		ul {
-			list-style-type: none;
-			padding: 0;
+		.title-and-links {
+			align-items: center;
+			display: flex;
+			flex-direction: row;
+			gap: 2.5rem;
+
+			ul {
+				display: flex;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+
+				li {
+					margin-right: 1.75rem;
+				}
+
+				li:last-child {
+					margin-right: 0;
+				}
+			}
+
+			a {
+				color: black;
+				text-decoration: none;
+
+				&:hover:not(#nav-logo) {
+					font-weight: 500;
+				}
+			}
 		}
 
-		a {
-			text-decoration: none;
+		&::before {
+			content: '';
+			box-shadow: 0 6px 12px 0 rgba($color: #000000, $alpha: 0.1);
+			height: 80px;
+			top: 0;
+			left: 50%;
+			position: absolute;
+			transform: translateX(-50%);
+			width: 100vw;
+			z-index: -1;
 		}
 	}
 </style>
