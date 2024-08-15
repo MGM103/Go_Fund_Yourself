@@ -1,0 +1,33 @@
+@import '_constants';
+
+// FONTS
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+body {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+// HEADER SIZES
+.h1 {
+	font-size: $H1_SIZE;
+}
+
+.h2 {
+	font-size: $H2_SIZE;
+}
+
+.h3 {
+	font-size: $H3_SIZE;
+}
+
+.h4 {
+	font-size: $H4_SIZE;
+}
+
+.h5 {
+	font-size: $H5_SIZE;
+}
+
+.h6 {
+	font-size: $H6_SIZE;
+}

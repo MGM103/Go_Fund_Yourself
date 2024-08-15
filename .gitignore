@@ -15,7 +15,8 @@ docs/
 .env
 
 #Libraries
-lib/
+/lib/
+!frontend/src/lib/
 
 #Local vs code settings
 .vscode
