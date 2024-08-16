@@ -1,0 +1,14 @@
+.connect-btn {
+	background-color: $ACTIVE_BLUE;
+	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+	font-weight: 550;
+	padding: 10px 12px;
+	width: 100px;
+
+	&:hover {
+		background-color: rgba($color: $ACTIVE_BLUE, $alpha: 0.5);
+		transition: background-color 0.2s;
+	}
+}

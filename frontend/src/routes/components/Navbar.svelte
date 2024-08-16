@@ -7,10 +7,12 @@
 		</ul>
 	</div>
 
-	<button>Connect</button>
+	<button class="connect-btn">Connect</button>
 </nav>
 
 <style scoped lang="scss">
+	@import '../../lib/styles/constants.scss';
+
 	nav {
 		align-items: center;
 		display: flex;
@@ -46,16 +48,23 @@
 				color: black;
 				text-decoration: none;
 
+				&:not(#nav-logo) {
+					display: block;
+					width: 130px;
+				}
+
 				&:hover:not(#nav-logo) {
 					font-weight: 500;
+					transition: font-weight 0.2s;
 				}
 			}
 		}
 
 		&::before {
 			content: '';
+			background-color: $LIGHT_BLUE;
 			box-shadow: 0 6px 12px 0 rgba($color: #000000, $alpha: 0.1);
-			height: 80px;
+			height: 100%;
 			top: 0;
 			left: 50%;
 			position: absolute;
