@@ -50,19 +50,18 @@
 
 				&:not(#nav-logo) {
 					display: block;
-					width: 130px;
 				}
 
 				&:hover:not(#nav-logo) {
-					font-weight: 500;
-					transition: font-weight 0.2s;
+					transform: scale(1.025);
+					transition: transform 0.1s;
 				}
 			}
 		}
 
 		&::before {
 			content: '';
-			background-color: $LIGHT_BLUE;
+			background-color: $LIGHT_TEAL;
 			box-shadow: 0 6px 12px 0 rgba($color: #000000, $alpha: 0.1);
 			height: 100%;
 			top: 0;

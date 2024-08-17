@@ -1,5 +1,5 @@
 .connect-btn {
-	background-color: $ACTIVE_BLUE;
+	background-color: $TEAL;
 	border-radius: 6px;
 	border: none;
 	cursor: pointer;
@@ -8,7 +8,7 @@
 	width: 100px;
 
 	&:hover {
-		background-color: rgba($color: $ACTIVE_BLUE, $alpha: 0.5);
+		background-color: $TEAL_50;
 		transition: background-color 0.2s;
 	}
 }

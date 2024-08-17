@@ -1,5 +1,6 @@
 <script>
 	import '$lib/styles/global.scss';
+	import Footer from './components/Footer.svelte';
 	import Navbar from './components/Navbar.svelte';
 </script>
 
@@ -7,6 +8,8 @@
 <div id="main-content">
 	<slot></slot>
 </div>
+
+<Footer />
 
 <style scoped lang="scss">
 	#main-content {

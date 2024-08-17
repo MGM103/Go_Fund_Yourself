@@ -1,0 +1,76 @@
+<footer id="site-footer">
+	<section id="top-row">
+		<h2 class="h3">Go Fund Yourself</h2>
+	</section>
+	<section id="bottom-row">
+		<div id="funding-option">
+			<h3 class="h6">Funding options</h3>
+			<ul>
+				<li><a href="/fund-yourself">Start you own fund raise</a></li>
+				<li><a href="/fund-someone">Support another cause</a></li>
+			</ul>
+		</div>
+		<div id="about-creator">
+			<h3 class="h6">About the creator</h3>
+			<ul>
+				<li>
+					<a href="https://github.com/MGM103?tab=overview&from=2024-08-01&to=2024-08-15"
+						>Portfolio</a
+					>
+				</li>
+				<li><a href="/">Website (coming soon!)</a></li>
+			</ul>
+		</div>
+	</section>
+</footer>
+
+<style scoped lang="scss">
+	@import '../../lib/styles/constants.scss';
+
+	#site-footer {
+		color: $LIGHT_TEAL;
+		display: flex;
+		flex-direction: column;
+		margin: 0 auto;
+		max-width: 1080px;
+		padding-top: 1rem;
+		padding-bottom: 2rem;
+		position: relative;
+
+		#bottom-row {
+			display: flex;
+			flex-direction: row;
+			gap: 4rem;
+		}
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			margin-bottom: 0.25rem;
+		}
+		a {
+			color: $LIGHT_TEAL;
+			text-decoration: none;
+
+			&:hover {
+				color: $LIGHT_TEAL_50;
+			}
+		}
+
+		&::before {
+			content: '';
+			background-color: $DEEP_BLUE;
+			height: 100%;
+			left: 50%;
+			position: absolute;
+			top: 0;
+			transform: translateX(-50%);
+			width: 100vw;
+			z-index: -1;
+		}
+	}
+</style>
