@@ -57,7 +57,7 @@
 			text-decoration: none;
 
 			&:hover {
-				color: $LIGHT_TEAL_50;
+				color: $TEAL_50;
 			}
 		}
 
