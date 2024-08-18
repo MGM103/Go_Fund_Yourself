@@ -18,7 +18,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		margin: 0 auto 54px auto;
+		margin: 0 auto;
 		max-width: 1080px;
 		position: sticky;
 		width: 100%;
