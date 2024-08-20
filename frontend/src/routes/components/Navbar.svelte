@@ -56,6 +56,7 @@
 				}
 
 				&:hover:not(#nav-logo) {
+					color: $DEEP_BLUE;
 					transform: scale(1.025);
 					transition: transform 0.1s;
 				}

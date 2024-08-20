@@ -2,61 +2,44 @@
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import HomeContentSection from './components/HomeContentSection.svelte';
+	import typewriter from '$lib';
 
 	// STATE VARIABLES
-	let visible = false;
+	let landingVisible = false;
 
-	// LIFECYCLE FUNCTIONS
+	// LIFE-CYCLE LOGIC
 	onMount(() => {
-		visible = true;
+		landingVisible = true;
 		window.scrollTo(0, 0);
 	});
-
-	// UTILITY FUNCTIONS
-	function typewriter(node, { delay = 0, speed = 2 }) {
-		const valid = node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE;
-
-		if (!valid) {
-			throw new Error(`This transition only works on elements with a single text node child`);
-		}
-
-		const text = node.textContent;
-		const duration = text.length / (speed * 0.01);
-
-		return {
-			delay,
-			duration,
-			tick: (t) => {
-				const i = Math.trunc(text.length * t);
-				node.textContent = text.slice(0, i);
-			}
-		};
-	}
 </script>
 
-<section class="landing-section">
-	{#if visible}
-		<h1 in:fade={{ duration: 3000, delay: 100 }}>Go</h1>
-		<h1 in:fade={{ duration: 3000, delay: 800 }}>Fund</h1>
-		<h1 in:fade={{ duration: 3000, delay: 1500 }}>Yourself</h1>
-		<div class="call-to-action">
-			<p transition:typewriter={{ speed: 2, delay: 2000 }}>
-				Harness the power of crowd-sourced fund-raising today
-			</p>
-			<button
-				class="connect-btn"
-				transition:fade={{ delay: 5000, duration: 1000 }}
-				on:click={() => goto('/fund-yourself')}>Raise funds</button
-			>
-		</div>
-	{/if}
-</section>
-<section class="fund-yourself-description">
-	<h2>Raise funds for a special cause</h2>
-</section>
-<section class="fund-someone-description">
-	<h2>Donate to initiatives around the world</h2>
-</section>
+<div>
+	<section class="landing-section">
+		{#if landingVisible}
+			<h1 in:fade={{ duration: 3000, delay: 100 }}>Go</h1>
+			<h1 in:fade={{ duration: 3000, delay: 800 }}>Fund</h1>
+			<h1 in:fade={{ duration: 3000, delay: 1500 }}>Yourself.</h1>
+			<div class="call-to-action">
+				<p transition:typewriter={{ speed: 2, delay: 2000 }}>
+					Harness the power of crowd-sourced fund-raising today
+				</p>
+				<button
+					class="connect-btn"
+					transition:fade={{ delay: 5000, duration: 1000 }}
+					on:click={() => goto('/fund-yourself')}>Raise funds</button
+				>
+			</div>
+		{/if}
+	</section>
+	<HomeContentSection revealThreshold={0.1}>
+		<h2>Raise funds for a special cause</h2>
+	</HomeContentSection>
+	<HomeContentSection revealThreshold={0.2}>
+		<h2 in:fade>Donate to initiatives around the world</h2>
+	</HomeContentSection>
+</div>
 
 <style scoped lang="scss">
 	@import '../lib/styles/constants.scss';
