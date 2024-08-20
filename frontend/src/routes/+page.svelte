@@ -9,6 +9,7 @@
 	// LIFECYCLE FUNCTIONS
 	onMount(() => {
 		visible = true;
+		window.scrollTo(0, 0);
 	});
 
 	// UTILITY FUNCTIONS

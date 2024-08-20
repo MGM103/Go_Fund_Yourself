@@ -21,13 +21,16 @@
 		margin: 0 auto;
 		max-width: 1080px;
 		position: sticky;
+		top: 0;
 		width: 100%;
+		z-index: 1;
 
 		.title-and-links {
 			align-items: center;
 			display: flex;
 			flex-direction: row;
 			gap: 2.5rem;
+			z-index: 1;
 
 			ul {
 				display: flex;
@@ -59,6 +62,10 @@
 			}
 		}
 
+		.connect-btn {
+			z-index: 1;
+		}
+
 		&::before {
 			content: '';
 			background-color: $LIGHT_TEAL;
@@ -69,7 +76,7 @@
 			position: absolute;
 			transform: translateX(-50%);
 			width: 100vw;
-			z-index: -1;
+			z-index: 0;
 		}
 	}
 </style>
