@@ -33,8 +33,8 @@
 		flex-direction: column;
 		margin: 0 auto;
 		max-width: 1080px;
-		padding-top: 1rem;
-		padding-bottom: 2rem;
+		padding-top: 2.5rem;
+		padding-bottom: 2.5rem;
 		position: relative;
 
 		#bottom-row {
