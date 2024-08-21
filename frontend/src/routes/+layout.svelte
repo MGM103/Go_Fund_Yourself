@@ -12,6 +12,8 @@
 <Footer />
 
 <style scoped lang="scss">
+	@import '../lib/styles/constants.scss';
+
 	#main-content {
 		max-width: 1080px;
 		margin: 0 auto;

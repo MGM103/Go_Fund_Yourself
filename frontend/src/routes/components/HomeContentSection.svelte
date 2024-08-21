@@ -24,6 +24,10 @@
 		);
 
 		observer.observe(element);
+
+		return () => {
+			observer.unobserve(element);
+		};
 	});
 </script>
 
@@ -38,6 +42,7 @@
 		display: flex;
 		flex-direction: column;
 		height: 50vh;
+		margin: 4rem 0;
 		position: relative;
 	}
 </style>

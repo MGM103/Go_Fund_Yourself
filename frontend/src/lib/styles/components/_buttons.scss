@@ -12,3 +12,17 @@
 		transition: background-color 0.2s;
 	}
 }
+
+.shadow-btn {
+	background-color: $TEAL;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	font-weight: 550;
+	padding: 12px;
+
+	&:hover {
+		box-shadow: 0px 0px 16px $TEAL;
+		transform: scale(1.01);
+	}
+}

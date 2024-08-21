@@ -1,3 +1,7 @@
 @import 'constants';
 @import 'typography';
 @import './components/_buttons';
+
+body {
+	background-color: $LIGHT_TEAL_25;
+}
