@@ -45,3 +45,24 @@
 		transform: scale(1.01);
 	}
 }
+
+.power-btn {
+	align-items: center;
+	background-color: $LIGHT_TEAL_50;
+	border: 1px solid $TEAL;
+	border-radius: 12px;
+	box-shadow: 0 2px $TEAL;
+	cursor: pointer;
+	display: flex;
+	gap: 0.5rem;
+	padding: 12px 20px;
+
+	&:hover {
+		box-shadow: 0 4px $TEAL;
+	}
+
+	img {
+		max-height: 16px;
+		max-width: 16px;
+	}
+}

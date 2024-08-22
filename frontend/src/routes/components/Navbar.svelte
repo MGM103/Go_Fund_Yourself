@@ -34,7 +34,7 @@
 	</div>
 
 	{#if $connected}
-		<button class="connected-btn" on:click={disconnectWallet}>
+		<button class="connected-btn" on:click={disconnectWallet} title="Disconnect wallet">
 			<img src={account} alt="account-icon" />
 			{`${$signerAddress.slice(0, 5)}...${$signerAddress.slice(-4)}`}
 		</button>
