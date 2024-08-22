@@ -1,3 +1,29 @@
+<script>
+	import {
+		connected,
+		configuredConnectors,
+		disconnectWagmi,
+		loading,
+		signerAddress,
+		wagmiConfig
+	} from 'svelte-wagmi';
+	import { connect } from '@wagmi/core';
+	import { account } from '$lib/assets';
+
+	// FUNCTIONS
+	const connectWallet = async () => {
+		$loading = true;
+		await connect($wagmiConfig, {
+			connector: $configuredConnectors[0]
+		});
+		$loading = false;
+	};
+
+	const disconnectWallet = async () => {
+		await disconnectWagmi();
+	};
+</script>
+
 <nav>
 	<div class="title-and-links">
 		<h2><a id="nav-logo" href="/">Go Fund Yourself</a></h2>
@@ -7,7 +33,20 @@
 		</ul>
 	</div>
 
-	<button class="connect-btn">Connect</button>
+	{#if $connected}
+		<button class="connected-btn" on:click={disconnectWallet}>
+			<img src={account} alt="account-icon" />
+			{`${$signerAddress.slice(0, 5)}...${$signerAddress.slice(-4)}`}
+		</button>
+	{:else}
+		<button on:click={connectWallet} class="connect-btn">
+			{#if $loading}
+				loading...
+			{:else}
+				connect
+			{/if}
+		</button>
+	{/if}
 </nav>
 
 <style scoped lang="scss">
@@ -56,14 +95,14 @@
 				}
 
 				&:hover:not(#nav-logo) {
-					color: $DEEP_BLUE;
 					transform: scale(1.025);
 					transition: transform 0.1s;
 				}
 			}
 		}
 
-		.connect-btn {
+		.connect-btn,
+		.connected-btn {
 			z-index: 1;
 		}
 
