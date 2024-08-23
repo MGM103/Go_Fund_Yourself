@@ -38,6 +38,7 @@
 	border: none;
 	cursor: pointer;
 	font-weight: 550;
+	min-width: 100px;
 	padding: 12px;
 
 	&:hover {
@@ -64,5 +65,17 @@
 	img {
 		max-height: 16px;
 		max-width: 16px;
+	}
+}
+
+.table-filter-btn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+
+	&:hover {
+		border-bottom: 2px solid $TEAL_50;
+		margin-bottom: -2px;
 	}
 }

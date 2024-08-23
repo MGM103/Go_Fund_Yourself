@@ -35,7 +35,8 @@
 		max-width: 1080px;
 		padding-top: 2.5rem;
 		padding-bottom: 2.5rem;
-		position: relative;
+		position: sticky;
+		top: 100vh;
 
 		#bottom-row {
 			display: flex;

@@ -1,6 +1,9 @@
 <script>
 	import { add } from '$lib/assets';
 	import { goto } from '$app/navigation';
+	import { connected } from 'svelte-wagmi';
+	import { DashboardTable, DisconnectedTablePlaceholder } from '$lib/components';
+	import mockFunds from '$lib/mocks/mockFunds.js';
 
 	// STATE VARIABLES
 	let totalFundRaises = 0;
@@ -32,14 +35,15 @@
 		</div>
 	</div>
 
-	<div class="your-fund-raises">
-		<h2>Your fund raises</h2>
-		<ul>
-			<li><a>Your funds</a></li>
-			<li><a>Active</a></li>
-			<li><a>Completed</a></li>
-		</ul>
-	</div>
+	{#if $connected}
+		<DashboardTable
+			tableTitle={'Your fund raises'}
+			tableTabs={['Your raises', 'Active', 'Completed']}
+			tableData={mockFunds}
+		/>
+	{:else}
+		<DisconnectedTablePlaceholder />
+	{/if}
 </div>
 
 <style scoped lang="scss">
@@ -73,9 +77,5 @@
 				border-right: none;
 			}
 		}
-	}
-
-	.your-fund-raises {
-		padding: 2.5rem 0;
 	}
 </style>
