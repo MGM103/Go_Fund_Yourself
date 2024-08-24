@@ -6,12 +6,24 @@
 
 	// STATE VARIABLES
 	let activeTab = 0;
+	let currentPage = 0;
+	let pageSize = 5;
+
+	// DERIVED VARIABLES
+	$: filteredData = tableData.slice(currentPage * pageSize, currentPage * pageSize + pageSize);
 
 	// FUNCTIONS
 	function updateActiveTab(tabIndex) {
 		if (tabIndex <= tableTabs?.length) {
 			activeTab = tabIndex;
 		}
+	}
+
+	function updateTablePage(newPageNumber = currentPage + 1) {
+		currentPage = newPageNumber;
+		console.log(
+			`Current page:${currentPage}\nStart slice:${currentPage * pageSize}End slice:${currentPage * pageSize + pageSize}`
+		);
 	}
 </script>
 
@@ -27,7 +39,7 @@
 		{/each}
 	</div>
 	<div class="dashboard-table">
-		{#each tableData as fundRaise}
+		{#each filteredData as fundRaise}
 			<div class="fund">
 				<h3>{fundRaise.name}</h3>
 				<div class="details">
@@ -36,6 +48,10 @@
 				</div>
 			</div>
 		{/each}
+		<div>
+			<button on:click={() => updateTablePage(currentPage - 1)}>Prev</button>
+			<button on:click={() => updateTablePage()}>Next</button>
+		</div>
 	</div>
 </div>
 
