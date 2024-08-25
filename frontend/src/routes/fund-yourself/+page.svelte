@@ -9,6 +9,24 @@
 	let totalFundRaises = 0;
 	let totalFunding = 0;
 	let totalDonors = 0;
+	let filteredData = mockFunds;
+
+	// FUNCTIONS
+	function handleYourRaises() {
+		filteredData = mockFunds;
+	}
+
+	function handleActiveRaises() {
+		filteredData = mockFunds.filter((fund) => {
+			return fund.active;
+		});
+	}
+
+	function handleCompletedRaises() {
+		filteredData = mockFunds.filter((fund) => {
+			return !fund.active;
+		});
+	}
 </script>
 
 <div>
@@ -39,7 +57,10 @@
 		<DashboardTable
 			tableTitle={'Your fund raises'}
 			tableTabs={['Your raises', 'Active', 'Completed']}
-			tableData={mockFunds}
+			tableData={filteredData}
+			on:yourRaises={handleYourRaises}
+			on:active={handleActiveRaises}
+			on:completed={handleCompletedRaises}
 		/>
 	{:else}
 		<DisconnectedTablePlaceholder />

@@ -1,5 +1,7 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
 	import { leftArrow, rightArrow } from '$lib/assets';
+	import { toCamelCase } from '$lib/utils';
 
 	// PROPS
 	export let tableTitle;
@@ -10,6 +12,9 @@
 	let activeTab = 0;
 	let currentPage = 0;
 	let pageSize = 5;
+
+	// EVENTS
+	const dispatch = createEventDispatcher();
 
 	// DERIVED VARIABLES
 	$: filteredData = tableData.slice(currentPage * pageSize, currentPage * pageSize + pageSize);
@@ -35,7 +40,11 @@
 			<button
 				class="table-filter-btn"
 				class:active={activeTab === index}
-				on:click={() => updateActiveTab(index)}>{tab}</button
+				on:click={() => {
+					updateActiveTab(index);
+					dispatch(toCamelCase(tab), {});
+					console.log(toCamelCase(tab));
+				}}>{tab}</button
 			>
 		{/each}
 	</div>
