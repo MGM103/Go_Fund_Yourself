@@ -1,4 +1,6 @@
 <script>
+	import { leftArrow, rightArrow } from '$lib/assets';
+
 	// PROPS
 	export let tableTitle;
 	export let tableTabs;
@@ -11,6 +13,8 @@
 
 	// DERIVED VARIABLES
 	$: filteredData = tableData.slice(currentPage * pageSize, currentPage * pageSize + pageSize);
+	$: nextBtnDisabled = currentPage + 1 >= Math.ceil(tableData.length / pageSize);
+	$: prevBtnDisabled = currentPage <= 0;
 
 	// FUNCTIONS
 	function updateActiveTab(tabIndex) {
@@ -21,9 +25,6 @@
 
 	function updateTablePage(newPageNumber = currentPage + 1) {
 		currentPage = newPageNumber;
-		console.log(
-			`Current page:${currentPage}\nStart slice:${currentPage * pageSize}End slice:${currentPage * pageSize + pageSize}`
-		);
 	}
 </script>
 
@@ -48,9 +49,19 @@
 				</div>
 			</div>
 		{/each}
-		<div>
-			<button on:click={() => updateTablePage(currentPage - 1)}>Prev</button>
-			<button on:click={() => updateTablePage()}>Next</button>
+		<div class="pagination-btns">
+			<button
+				class="pagination-btn"
+				on:click={() => updateTablePage(currentPage - 1)}
+				disabled={prevBtnDisabled}
+			>
+				<img src={leftArrow} alt="left-arrow-icon" />
+				Prev</button
+			>
+			<button class="pagination-btn" on:click={() => updateTablePage()} disabled={nextBtnDisabled}>
+				Next
+				<img src={rightArrow} alt="right-arrow-icon" />
+			</button>
 		</div>
 	</div>
 </div>
@@ -108,6 +119,13 @@
 						text-align: center;
 					}
 				}
+			}
+
+			.pagination-btns {
+				align-items: center;
+				display: flex;
+				justify-content: space-between;
+				padding: 1rem;
 			}
 		}
 	}

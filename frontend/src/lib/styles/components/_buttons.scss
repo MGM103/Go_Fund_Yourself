@@ -79,3 +79,24 @@
 		margin-bottom: -2px;
 	}
 }
+
+.pagination-btn {
+	align-items: center;
+	background-color: transparent;
+	border: 1px solid transparent;
+	display: flex;
+	font-size: 14px;
+	gap: 0.5rem;
+	padding: 12px;
+
+	&:hover:not(:disabled) {
+		border-radius: 8px;
+		border: 1px solid $DEEP_BLUE_25;
+		cursor: pointer;
+	}
+
+	img {
+		max-height: 1rem;
+		max-width: 1rem;
+	}
+}
