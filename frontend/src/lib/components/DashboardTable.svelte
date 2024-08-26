@@ -1,5 +1,5 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import { leftArrow, rightArrow } from '$lib/assets';
 	import { toCamelCase } from '$lib/utils';
 	import Dropdown from './Dropdown.svelte';
@@ -17,9 +17,15 @@
 		{ name: '5', value: 5 },
 		{ name: '10', value: 10 }
 	];
+	let table;
 
-	// EVENTS
+	// EVENTS / LIFECYCLE
 	const dispatch = createEventDispatcher();
+
+	onMount(() => {
+		const fundHeight = table.querySelector('.fund').offsetHeight;
+		table.style.minHeight = `${(fundHeight + pageSize) * pageSize}px`;
+	});
 
 	// DERIVED VARIABLES
 	$: filteredData = tableData.slice(currentPage * pageSize, currentPage * pageSize + pageSize);
@@ -63,7 +69,7 @@
 			on:newVal={updateTablePageSize}
 		/>
 	</div>
-	<div class="dashboard-table">
+	<div bind:this={table} class="dashboard-table">
 		{#each filteredData as fundRaise}
 			<div class="fund">
 				<h3>{fundRaise.name}</h3>
@@ -73,20 +79,20 @@
 				</div>
 			</div>
 		{/each}
-		<div class="pagination-btns">
-			<button
-				class="pagination-btn"
-				on:click={() => updateTablePage(currentPage - 1)}
-				disabled={prevBtnDisabled}
-			>
-				<img src={leftArrow} alt="left-arrow-icon" />
-				Prev</button
-			>
-			<button class="pagination-btn" on:click={() => updateTablePage()} disabled={nextBtnDisabled}>
-				Next
-				<img src={rightArrow} alt="right-arrow-icon" />
-			</button>
-		</div>
+	</div>
+	<div class="pagination-btns">
+		<button
+			class="pagination-btn"
+			on:click={() => updateTablePage(currentPage - 1)}
+			disabled={prevBtnDisabled}
+		>
+			<img src={leftArrow} alt="left-arrow-icon" />
+			Prev</button
+		>
+		<button class="pagination-btn" on:click={() => updateTablePage()} disabled={nextBtnDisabled}>
+			Next
+			<img src={rightArrow} alt="right-arrow-icon" />
+		</button>
 	</div>
 </div>
 
@@ -150,13 +156,12 @@
 					}
 				}
 			}
-
-			.pagination-btns {
-				align-items: center;
-				display: flex;
-				justify-content: space-between;
-				padding: 1rem;
-			}
+		}
+		.pagination-btns {
+			align-items: center;
+			display: flex;
+			justify-content: space-between;
+			padding: 1rem;
 		}
 	}
 </style>
