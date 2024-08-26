@@ -2,6 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import { leftArrow, rightArrow } from '$lib/assets';
 	import { toCamelCase } from '$lib/utils';
+	import Dropdown from './Dropdown.svelte';
 
 	// PROPS
 	export let tableTitle;
@@ -12,6 +13,10 @@
 	let activeTab = 0;
 	let currentPage = 0;
 	let pageSize = 5;
+	let pageSizeOptions = [
+		{ name: '5', value: 5 },
+		{ name: '10', value: 10 }
+	];
 
 	// EVENTS
 	const dispatch = createEventDispatcher();
@@ -31,22 +36,28 @@
 	function updateTablePage(newPageNumber = currentPage + 1) {
 		currentPage = newPageNumber;
 	}
+
+	function updateTablePageSize(event) {
+		pageSize = event.detail;
+	}
 </script>
 
 <div class="table-container">
 	<h2>{tableTitle}</h2>
-	<div class="filter-btns">
-		{#each tableTabs as tab, index}
-			<button
-				class="table-filter-btn"
-				class:active={activeTab === index}
-				on:click={() => {
-					updateActiveTab(index);
-					dispatch(toCamelCase(tab), {});
-					console.log(toCamelCase(tab));
-				}}>{tab}</button
-			>
-		{/each}
+	<div class="table-top-row">
+		<div class="filter-btns">
+			{#each tableTabs as tab, index}
+				<button
+					class="table-filter-btn"
+					class:active={activeTab === index}
+					on:click={() => {
+						updateActiveTab(index);
+						dispatch(toCamelCase(tab), {});
+					}}>{tab}</button
+				>
+			{/each}
+		</div>
+		<Dropdown selectOptions={pageSizeOptions} on:newVal={updateTablePageSize} />
 	</div>
 	<div class="dashboard-table">
 		{#each filteredData as fundRaise}
@@ -81,13 +92,19 @@
 	.table-container {
 		padding: 2.5rem 0;
 
-		.filter-btns {
+		.table-top-row {
+			align-items: center;
 			display: flex;
-			gap: 1rem;
+			justify-content: space-between;
 
-			.active {
-				border-bottom: 2px solid $TEAL_50;
-				margin-bottom: -2px;
+			.filter-btns {
+				display: flex;
+				gap: 1rem;
+
+				.active {
+					border-bottom: 2px solid $TEAL_50;
+					margin-bottom: -2px;
+				}
 			}
 		}
 
