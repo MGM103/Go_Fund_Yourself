@@ -84,6 +84,7 @@
 		box-shadow: 0 8px 8px #00000015;
 		display: flex;
 		justify-content: space-between;
+		margin-bottom: 4rem;
 		padding: 2rem;
 
 		.analytic {

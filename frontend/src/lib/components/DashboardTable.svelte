@@ -63,11 +63,7 @@
 				>
 			{/each}
 		</div>
-		<Dropdown
-			labelText="Page size"
-			selectOptions={pageSizeOptions}
-			on:newVal={updateTablePageSize}
-		/>
+		<Dropdown selectOptions={pageSizeOptions} on:newVal={updateTablePageSize} />
 	</div>
 	<div bind:this={table} class="dashboard-table">
 		{#each filteredData as fundRaise}
@@ -100,7 +96,9 @@
 	@import '../styles/constants.scss';
 
 	.table-container {
-		padding: 2.5rem 0;
+		h2 {
+			margin-top: 1rem;
+		}
 
 		.table-top-row {
 			align-items: center;
