@@ -57,7 +57,11 @@
 				>
 			{/each}
 		</div>
-		<Dropdown selectOptions={pageSizeOptions} on:newVal={updateTablePageSize} />
+		<Dropdown
+			labelText="Page size"
+			selectOptions={pageSizeOptions}
+			on:newVal={updateTablePageSize}
+		/>
 	</div>
 	<div class="dashboard-table">
 		{#each filteredData as fundRaise}

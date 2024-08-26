@@ -36,6 +36,13 @@
 <style scoped lang="scss">
 	@import '../styles/constants.scss';
 
+	label {
+		align-items: center;
+		display: flex;
+		gap: 0.75rem;
+		justify-content: center;
+	}
+
 	select {
 		background-color: transparent;
 		border: 1px solid $DEEP_BLUE_25;
