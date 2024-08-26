@@ -32,7 +32,7 @@
 <div>
 	<div class="create-new-raise">
 		<h1>Fund yourself</h1>
-		<button class="power-btn" on:click={() => goto('/create-fund-raise')}>
+		<button class="power-btn" on:click={() => goto('/fund-yourself/new-raise')}>
 			<img src={add} alt="add-icon" />
 			New fund raise</button
 		>
