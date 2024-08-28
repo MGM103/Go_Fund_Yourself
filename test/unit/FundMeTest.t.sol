@@ -14,6 +14,9 @@ contract FundMeTest is Test {
     uint256 constant SEND_VALUE = 0.25 ether;
     uint256 constant STARTING_BAL = 10 ether;
     uint256 constant GAS_PRICE = 1;
+    uint256 constant FUND_RAISE_ID = 1;
+    string constant FUND_RAISE_DESCRIPTION = "College tuition";
+    uint256 constant FUND_RAISE_GOAL = 10 ether;
 
     function setUp() external {
         DeployFundMe deployFundMe = new DeployFundMe();
@@ -21,9 +24,15 @@ contract FundMeTest is Test {
         vm.deal(USER, STARTING_BAL);
     }
 
+    modifier createFirstFundRaise() {
+        vm.prank(USER);
+        fundMe.createFundRaise(FUND_RAISE_DESCRIPTION, FUND_RAISE_GOAL);
+        _;
+    }
+
     modifier fundContract() {
         vm.prank(USER);
-        fundMe.fund{value: SEND_VALUE}();
+        fundMe.fund{value: SEND_VALUE}(FUND_RAISE_ID);
         _;
     }
 
@@ -41,23 +50,23 @@ contract FundMeTest is Test {
 
     function testFundFailsBelowMinAmount() public {
         vm.expectRevert(); // Expects proceeding line to fail
-        fundMe.fund(); // Sending fund transaction with no ETH
+        fundMe.fund(FUND_RAISE_ID); // Sending fund transaction with no ETH
     }
 
     function testFundUpdatesFundedDataStructure() public fundContract {
-        uint256 amountFunded = fundMe.getAddressToAmountFunded(USER);
+        uint256 amountFunded = fundMe.getAddressToAmountFunded(FUND_RAISE_ID, USER);
         assertEq(amountFunded, SEND_VALUE);
     }
 
     function testAddsFunderToFunderArray() public fundContract {
-        address firstFunder = fundMe.getFunder(0);
+        address firstFunder = fundMe.getFunder(FUND_RAISE_ID, 0);
         assertEq(firstFunder, USER);
     }
 
     function testOnlyOwnerCanWithdraw() public fundContract {
         vm.prank(USER);
         vm.expectRevert();
-        fundMe.withdraw();
+        fundMe.withdraw(FUND_RAISE_ID);
     }
 
     function testOwnerWithdrawSingleFunder() public fundContract {
@@ -67,7 +76,7 @@ contract FundMeTest is Test {
 
         // Act
         vm.prank(fundMe.getOwner());
-        fundMe.withdraw();
+        fundMe.withdraw(FUND_RAISE_ID);
 
         // Assert
         uint256 ownerEndBal = fundMe.getOwner().balance;
@@ -86,7 +95,7 @@ contract FundMeTest is Test {
 
         for (uint160 i = startingFunderIndex; i <= numberOfFunders; i++) {
             hoax(address(i), STARTING_BAL);
-            fundMe.fund{value: SEND_VALUE}();
+            fundMe.fund{value: SEND_VALUE}(FUND_RAISE_ID);
         }
 
         uint256 ownerStartBal = fundMe.getOwner().balance;
@@ -94,7 +103,7 @@ contract FundMeTest is Test {
 
         // Act
         vm.prank(fundMe.getOwner());
-        fundMe.withdraw();
+        fundMe.withdraw(FUND_RAISE_ID);
 
         // Assert
         uint256 ownerEndBal = fundMe.getOwner().balance;
