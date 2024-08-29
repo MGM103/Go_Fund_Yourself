@@ -40,12 +40,13 @@ contract FundMe {
     uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
     address private immutable i_owner;
 
-    uint256 s_id;
+    uint256 public s_id;
     AggregatorV3Interface private s_priceFeed;
 
     mapping(uint256 => FundRaiseData) private s_idToFundRaiseData;
     mapping(uint256 => address[]) private s_idToFunders;
     mapping(address => mapping(uint256 => uint256)) private s_addressToAmountFunded;
+    mapping(address => uint256[]) private s_creatorToFundRaises;
 
     // EVENTS
     event createdFundRaise(
@@ -84,6 +85,7 @@ contract FundMe {
         });
 
         s_idToFundRaiseData[s_id] = newFundRaise;
+        s_creatorToFundRaises[msg.sender].push(s_id);
 
         emit createdFundRaise(s_id, msg.sender, fundRaiseAmtGoal, fundRaiseDescription);
 
@@ -109,8 +111,9 @@ contract FundMe {
 
         s_idToFundRaiseData[id].status = Status.Completed;
         uint256 amtRaised = s_idToFundRaiseData[id].raisedAmt;
+        address creator = getCreator(id);
 
-        (bool success,) = i_owner.call{value: amtRaised}("");
+        (bool success,) = creator.call{value: amtRaised}("");
         require(success);
 
         emit withrawnFundsRaised(id, msg.sender, amtRaised);
@@ -124,6 +127,14 @@ contract FundMe {
      */
     function getAddressToAmountFunded(uint256 id, address fundingAddress) public view returns (uint256) {
         return s_addressToAmountFunded[fundingAddress][id];
+    }
+
+    function getRaisedAmt(uint256 id) public view returns (uint256) {
+        return s_idToFundRaiseData[id].raisedAmt;
+    }
+
+    function getFundRaiseAmtGoal(uint256 id) public view returns (uint256) {
+        return s_idToFundRaiseData[id].fundRaiseAmtGoal;
     }
 
     function getVersion() public view returns (uint256) {
@@ -146,5 +157,17 @@ contract FundMe {
 
     function getPriceFeed() public view returns (AggregatorV3Interface) {
         return s_priceFeed;
+    }
+
+    function getCreatorFundRaises(address creatorAddr) public view returns (uint256[] memory) {
+        return s_creatorToFundRaises[creatorAddr];
+    }
+
+    function getFundRaiseDescription(uint256 id) public view returns (string memory) {
+        return s_idToFundRaiseData[id].description;
+    }
+
+    function getStatus(uint256 id) public view returns (uint256) {
+        return uint256(s_idToFundRaiseData[id].status);
     }
 }

@@ -5,7 +5,7 @@ pragma solidity ^0.8.18;
 import {Test, console} from "forge-std/Test.sol";
 import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
 import {FundMe} from "../../src/FundMe.sol";
-import {FundFundMe, WithdrawFundMe} from "../../script/Interactions.s.sol";
+import {CreateFundMe, FundFundMe, WithdrawFundMe} from "../../script/Interactions.s.sol";
 import {StdCheats} from "forge-std/StdCheats.sol";
 
 contract InteractionsTest is StdCheats, Test {
@@ -25,6 +25,9 @@ contract InteractionsTest is StdCheats, Test {
     }
 
     function testUserCanFundInteractions() public {
+        CreateFundMe createFundMe = new CreateFundMe();
+        createFundMe.createNewFundRaise(address(fundMe));
+
         FundFundMe fundFundMe = new FundFundMe();
         fundFundMe.fundFundMe(address(fundMe));
 
