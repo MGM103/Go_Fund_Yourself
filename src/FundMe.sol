@@ -38,6 +38,8 @@ contract FundMe {
 
     // STATE VARIABLES
     uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
+    uint256 public constant FINDERS_FEE = 25; // basis points
+    uint256 private constant FINDERS_FEE_PRECISION = 10000;
     address private immutable i_owner;
 
     uint256 public s_id;
@@ -111,10 +113,15 @@ contract FundMe {
 
         s_idToFundRaiseData[id].status = Status.Completed;
         uint256 amtRaised = s_idToFundRaiseData[id].raisedAmt;
+        uint256 findersFee = (amtRaised * FINDERS_FEE) / FINDERS_FEE_PRECISION;
+        uint256 creatorReceivedAmt = amtRaised - findersFee;
         address creator = getCreator(id);
 
-        (bool success,) = creator.call{value: amtRaised}("");
-        require(success);
+        (bool successCreatorWithdrawal,) = creator.call{value: creatorReceivedAmt}("");
+        require(successCreatorWithdrawal);
+
+        (bool successOwnerPayment,) = i_owner.call{value: findersFee}("");
+        require(successOwnerPayment);
 
         emit withrawnFundsRaised(id, msg.sender, amtRaised);
     }
@@ -169,5 +176,10 @@ contract FundMe {
 
     function getStatus(uint256 id) public view returns (uint256) {
         return uint256(s_idToFundRaiseData[id].status);
+    }
+
+    function getFindersFee(uint256 id) public view returns (uint256) {
+        uint256 raisedAmt = s_idToFundRaiseData[id].raisedAmt;
+        return (raisedAmt * FINDERS_FEE) / FINDERS_FEE_PRECISION;
     }
 }

@@ -10,9 +10,9 @@ contract DeployFundMe is Script {
     function run() external returns (FundMe) {
         //Before startBroadcast simulated transaction and do not have to pay gas
         HelperConfig helperConfig = new HelperConfig();
-        address ethUsdPriceFeed = helperConfig.activeNetworkConfig();
+        (address ethUsdPriceFeed, uint256 deployerKey) = helperConfig.activeNetworkConfig();
 
-        vm.startBroadcast();
+        vm.startBroadcast(deployerKey);
         FundMe fundMe = new FundMe(ethUsdPriceFeed);
         vm.stopBroadcast();
         return fundMe;

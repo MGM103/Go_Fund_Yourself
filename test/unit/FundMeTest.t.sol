@@ -20,12 +20,15 @@ contract FundMeTest is Test {
     // Constant test variables
     address USER = makeAddr("user");
     address DONATOR = makeAddr("donator");
+    address constant OWNER = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
     uint256 constant SEND_VALUE = 0.25 ether;
     uint256 constant STARTING_BAL = 10 ether;
     uint256 constant GAS_PRICE = 1;
     uint256 constant FUND_RAISE_ID = 1;
-    string constant FUND_RAISE_DESCRIPTION = "College tuition";
     uint256 constant FUND_RAISE_GOAL = 10 ether;
+    uint256 public constant FINDERS_FEE = 25; // basis points
+    uint256 private constant FINDERS_FEE_PRECISION = 10000;
+    string constant FUND_RAISE_DESCRIPTION = "College tuition";
 
     // EVENTS
     event createdFundRaise(
@@ -46,8 +49,8 @@ contract FundMeTest is Test {
         assertEq(fundMe.MINIMUM_USD(), 5e18);
     }
 
-    function testOwnerIsMsgSender() public {
-        assertEq(fundMe.getOwner(), msg.sender);
+    function testOwnerIsSetCorrectly() public {
+        assertEq(fundMe.getOwner(), OWNER);
     }
 
     function testIdStartsAtOne() public {
@@ -190,7 +193,7 @@ contract FundMeTest is Test {
         assertEq(1, fundMe.getStatus(FUND_RAISE_ID));
     }
 
-    function testOwnerWithdrawSingleFunder() public createAndFundAFundRaise {
+    function testCreatorWithdrawSingleFunder() public createAndFundAFundRaise {
         // Arrange
         uint256 creatorStartingBal = fundMe.getCreator(FUND_RAISE_ID).balance;
         uint256 fundRaiseStartingBal = fundMe.getRaisedAmt(FUND_RAISE_ID);
@@ -200,10 +203,17 @@ contract FundMeTest is Test {
         fundMe.withdraw(FUND_RAISE_ID);
 
         // Assert
+        uint256 findersFee = fundMe.getFindersFee(FUND_RAISE_ID);
+        uint256 expectedFindersFee = 625 * 10 ** 12;
+        uint256 ownerEndBal = fundMe.getOwner().balance;
+        uint256 expectedOwnerEndBal = (SEND_VALUE * FINDERS_FEE) / FINDERS_FEE_PRECISION;
         uint256 creatorEndBal = fundMe.getCreator(FUND_RAISE_ID).balance;
-        uint256 expectedCreatorEndBal = creatorStartingBal + fundRaiseStartingBal;
+        uint256 expectedCreatorEndBal = creatorStartingBal + fundRaiseStartingBal - findersFee; // 6.25 * 10**14 eth
 
         assertEq(creatorEndBal, expectedCreatorEndBal);
+        assertEq(ownerEndBal, expectedOwnerEndBal);
+        assertEq(findersFee, expectedFindersFee);
+        assertEq(fundRaiseStartingBal, ownerEndBal + (creatorEndBal - creatorStartingBal));
     }
 
     function testOwnerWithdrawMultipleFunders() public createNewFundRaise {
@@ -224,9 +234,15 @@ contract FundMeTest is Test {
         fundMe.withdraw(FUND_RAISE_ID);
 
         // Assert
+        uint256 finderFee = fundMe.getFindersFee(FUND_RAISE_ID);
+        uint256 expectedFinderFee = 625 * 10 ** 13;
+        uint256 ownerEndBal = fundMe.getOwner().balance;
         uint256 creatorEndBal = fundMe.getCreator(FUND_RAISE_ID).balance;
-        uint256 expectedCreatorEndBal = creatorStartBal + fundMeStartBal;
+        uint256 expectedCreatorEndBal = creatorStartBal + fundMeStartBal - finderFee;
 
         assertEq(creatorEndBal, expectedCreatorEndBal);
+        assertEq(ownerEndBal, finderFee);
+        assertEq(finderFee, expectedFinderFee);
+        assertEq(fundMeStartBal, ownerEndBal + (creatorEndBal - creatorStartBal));
     }
 }
