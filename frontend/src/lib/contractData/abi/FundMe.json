@@ -1,0 +1,441 @@
+[
+	{
+		"type": "constructor",
+		"inputs": [
+			{
+				"name": "priceFeed",
+				"type": "address",
+				"internalType": "address"
+			}
+		],
+		"stateMutability": "nonpayable"
+	},
+	{
+		"type": "function",
+		"name": "FINDERS_FEE",
+		"inputs": [],
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "MINIMUM_USD",
+		"inputs": [],
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "createFundRaise",
+		"inputs": [
+			{
+				"name": "fundRaiseDescription",
+				"type": "string",
+				"internalType": "string"
+			},
+			{
+				"name": "fundRaiseAmtGoal",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [],
+		"stateMutability": "nonpayable"
+	},
+	{
+		"type": "function",
+		"name": "fund",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [],
+		"stateMutability": "payable"
+	},
+	{
+		"type": "function",
+		"name": "getAddressToAmountFunded",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			},
+			{
+				"name": "fundingAddress",
+				"type": "address",
+				"internalType": "address"
+			}
+		],
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getCreator",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [
+			{
+				"name": "",
+				"type": "address",
+				"internalType": "address"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getCreatorFundRaises",
+		"inputs": [
+			{
+				"name": "creatorAddr",
+				"type": "address",
+				"internalType": "address"
+			}
+		],
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]",
+				"internalType": "uint256[]"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getFindersFee",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getFundRaiseAmtGoal",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getFundRaiseDescription",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [
+			{
+				"name": "",
+				"type": "string",
+				"internalType": "string"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getFunder",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			},
+			{
+				"name": "index",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [
+			{
+				"name": "",
+				"type": "address",
+				"internalType": "address"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getFunders",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]",
+				"internalType": "address[]"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getOwner",
+		"inputs": [],
+		"outputs": [
+			{
+				"name": "",
+				"type": "address",
+				"internalType": "address"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getPriceFeed",
+		"inputs": [],
+		"outputs": [
+			{
+				"name": "",
+				"type": "address",
+				"internalType": "contract AggregatorV3Interface"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getRaisedAmt",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getStatus",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "getVersion",
+		"inputs": [],
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "s_id",
+		"inputs": [],
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"stateMutability": "view"
+	},
+	{
+		"type": "function",
+		"name": "withdraw",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"internalType": "uint256"
+			}
+		],
+		"outputs": [],
+		"stateMutability": "nonpayable"
+	},
+	{
+		"type": "event",
+		"name": "createdFundRaise",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"indexed": true,
+				"internalType": "uint256"
+			},
+			{
+				"name": "creator",
+				"type": "address",
+				"indexed": true,
+				"internalType": "address"
+			},
+			{
+				"name": "fundRaiseAmtGoal",
+				"type": "uint256",
+				"indexed": true,
+				"internalType": "uint256"
+			},
+			{
+				"name": "description",
+				"type": "string",
+				"indexed": false,
+				"internalType": "string"
+			}
+		],
+		"anonymous": false
+	},
+	{
+		"type": "event",
+		"name": "fundedFundRaise",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"indexed": true,
+				"internalType": "uint256"
+			},
+			{
+				"name": "funder",
+				"type": "address",
+				"indexed": true,
+				"internalType": "address"
+			},
+			{
+				"name": "amtFunded",
+				"type": "uint256",
+				"indexed": true,
+				"internalType": "uint256"
+			}
+		],
+		"anonymous": false
+	},
+	{
+		"type": "event",
+		"name": "withrawnFundsRaised",
+		"inputs": [
+			{
+				"name": "id",
+				"type": "uint256",
+				"indexed": true,
+				"internalType": "uint256"
+			},
+			{
+				"name": "creator",
+				"type": "address",
+				"indexed": true,
+				"internalType": "address"
+			},
+			{
+				"name": "amtWithdrawn",
+				"type": "uint256",
+				"indexed": true,
+				"internalType": "uint256"
+			}
+		],
+		"anonymous": false
+	},
+	{
+		"type": "error",
+		"name": "FundMe__FundRaiseEnded",
+		"inputs": []
+	},
+	{
+		"type": "error",
+		"name": "FundMe__FundRaiseIdNotFound",
+		"inputs": []
+	},
+	{
+		"type": "error",
+		"name": "FundMe__InsufficientDonationAmt",
+		"inputs": []
+	},
+	{
+		"type": "error",
+		"name": "FundMe__InsufficientGoalAmt",
+		"inputs": []
+	},
+	{
+		"type": "error",
+		"name": "FundMe__NotCreator",
+		"inputs": []
+	}
+]

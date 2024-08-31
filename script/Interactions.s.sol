@@ -20,6 +20,7 @@ contract CreateFundMe is Script {
     }
 
     function run() external {
+        console.log(block.chainid);
         address mostRecentlyDeployedContract = DevOpsTools.get_most_recent_deployment(CONTRACT_NAME, block.chainid);
 
         createNewFundRaise(mostRecentlyDeployedContract);
@@ -27,7 +28,7 @@ contract CreateFundMe is Script {
 }
 
 contract FundFundMe is Script {
-    uint256 constant FUND_AMT = 0.01 ether;
+    uint256 constant FUND_AMT = 0.1 ether;
     uint256 constant FUND_RAISE_ID = 1;
     string constant CONTRACT_NAME = "FundMe";
 

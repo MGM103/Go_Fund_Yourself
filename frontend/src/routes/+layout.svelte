@@ -5,13 +5,13 @@
 	import { onMount } from 'svelte';
 	import { defaultConfig } from 'svelte-wagmi';
 	import { injected } from '@wagmi/core';
-	import { sepolia } from 'viem/chains';
+	import { anvil } from 'viem/chains';
 	import { PUBLIC_WALLETCONNECT_ID } from '$env/static/public';
 
 	onMount(async () => {
 		const erckit = defaultConfig({
 			appName: 'GO_FUND_YOURSELF',
-			chains: [sepolia],
+			chains: [anvil],
 			connectors: [injected()],
 			walletConnectProjectId: PUBLIC_WALLETCONNECT_ID
 		});

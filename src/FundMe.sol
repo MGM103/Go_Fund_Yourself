@@ -152,6 +152,10 @@ contract FundMe {
         return s_idToFunders[id][index];
     }
 
+    function getFunders(uint256 id) public view returns (address[] memory) {
+        return s_idToFunders[id];
+    }
+
     function getOwner() public view returns (address) {
         return i_owner;
     }

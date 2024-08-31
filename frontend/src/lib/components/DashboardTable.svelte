@@ -23,8 +23,10 @@
 	const dispatch = createEventDispatcher();
 
 	onMount(() => {
-		const fundHeight = table.querySelector('.fund').offsetHeight;
-		table.style.minHeight = `${(fundHeight + pageSize) * pageSize}px`;
+		const fundHeight = table.querySelector('.fund')?.offsetHeight;
+		if (fundHeight) {
+			table.style.minHeight = `${(fundHeight + pageSize) * pageSize}px`;
+		}
 	});
 
 	// DERIVED VARIABLES

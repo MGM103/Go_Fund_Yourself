@@ -208,7 +208,7 @@ contract FundMeTest is Test {
         uint256 ownerEndBal = fundMe.getOwner().balance;
         uint256 expectedOwnerEndBal = (SEND_VALUE * FINDERS_FEE) / FINDERS_FEE_PRECISION;
         uint256 creatorEndBal = fundMe.getCreator(FUND_RAISE_ID).balance;
-        uint256 expectedCreatorEndBal = creatorStartingBal + fundRaiseStartingBal - findersFee; // 6.25 * 10**14 eth
+        uint256 expectedCreatorEndBal = creatorStartingBal + fundRaiseStartingBal - findersFee;
 
         assertEq(creatorEndBal, expectedCreatorEndBal);
         assertEq(ownerEndBal, expectedOwnerEndBal);
