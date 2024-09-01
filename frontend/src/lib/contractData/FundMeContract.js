@@ -1,4 +1,4 @@
-export const FUND_ME_ADDRESS = '0x5FC8d32690cc91D4c39d9d3abcBD16989F875707';
+export const FUND_ME_ADDRESS = '0x8a791620dd6260079bf849dc5567adc3f2fdc318';
 
 export const FUND_ME_STATUS_MAPPING = ['Active', 'Completed'];
 

@@ -20,34 +20,37 @@
 
 	// LIFE CYCLE
 	onMount(async () => {
-		const userFundRaises = await getUserFundRaisesIDArr();
-		totalFundRaises = userFundRaises.length;
+		if ($connected) {
+			const userFundRaises = await getUserFundRaisesIDArr();
+			totalFundRaises = userFundRaises.length;
 
-		for (let i = 0; i < userFundRaises.length; i++) {
-			let id = Number(userFundRaises[i]);
+			for (let i = 0; i < userFundRaises.length; i++) {
+				let id = Number(userFundRaises[i]);
 
-			const userFundDataGetters = [
-				getFundRaiseDescription(id),
-				getFundRaiseGoalAmount(id),
-				getFundRaiseStatus(id),
-				getFundsRaised(id),
-				getAllFundRaiseDonors(id)
-			];
+				const userFundDataGetters = [
+					getFundRaiseDescription(id),
+					getFundRaiseGoalAmount(id),
+					getFundRaiseStatus(id),
+					getFundsRaised(id),
+					getAllFundRaiseDonors(id)
+				];
 
-			const userFundData = await Promise.all(userFundDataGetters);
+				const userFundData = await Promise.all(userFundDataGetters);
 
-			totalFunding += Number(formatEther(userFundData[3]));
-			totalDonors += userFundData[4]?.length;
+				totalFunding += Number(formatEther(userFundData[3]));
+				totalDonors += userFundData[4]?.length;
 
-			dashboardData.push({
-				id,
-				name: userFundData[0],
-				goal: formatEther(userFundData[1]),
-				active: Boolean(userFundData[2])
-			});
+				dashboardData.push({
+					id,
+					name: userFundData[0],
+					goal: formatEther(userFundData[1]),
+					active: Boolean(userFundData[2])
+				});
+			}
+
+			dashboardData = dashboardData;
+			totalFunding = totalFunding.toFixed(2);
 		}
-
-		dashboardData = dashboardData;
 	});
 
 	// FUNCTIONS
@@ -149,7 +152,7 @@
 			<p>Total fund raises</p>
 		</div>
 		<div class="analytic">
-			<h2>{totalFunding}</h2>
+			<h2>{totalFunding} eth</h2>
 			<p>Total funding received</p>
 		</div>
 		<div class="analytic">
