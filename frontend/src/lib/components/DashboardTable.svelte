@@ -1,5 +1,5 @@
 <script>
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 	import { leftArrow, rightArrow } from '$lib/assets';
 	import { toCamelCase } from '$lib/utils';
 	import Dropdown from './Dropdown.svelte';
@@ -22,19 +22,26 @@
 	// EVENTS / LIFECYCLE
 	const dispatch = createEventDispatcher();
 
-	onMount(() => {
-		const fundHeight = table.querySelector('.fund')?.offsetHeight;
-		if (fundHeight) {
-			table.style.minHeight = `${(fundHeight + pageSize) * pageSize}px`;
-		}
-	});
-
 	// DERIVED VARIABLES
 	$: filteredData = tableData.slice(currentPage * pageSize, currentPage * pageSize + pageSize);
 	$: nextBtnDisabled = currentPage + 1 >= Math.ceil(tableData.length / pageSize);
 	$: prevBtnDisabled = currentPage <= 0;
 
+	// DERIVED FUNCTIONS
+	$: {
+		if (tableData && table) {
+			adjustTableMinHeight();
+		}
+	}
+
 	// FUNCTIONS
+	function adjustTableMinHeight() {
+		const fundHeight = table.querySelector('.fund')?.offsetHeight;
+		if (fundHeight) {
+			table.style.minHeight = `${(fundHeight + pageSize) * pageSize}px`;
+		}
+	}
+
 	function updateActiveTab(tabIndex) {
 		if (tabIndex <= tableTabs?.length) {
 			activeTab = tabIndex;
