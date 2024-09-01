@@ -22,18 +22,13 @@ contract FundMe {
     // TYPE DECLARATIONS
     using PriceConverter for uint256;
 
-    enum Status {
-        Active,
-        Completed
-    }
-
     struct FundRaiseData {
         uint256 id;
         address creator;
         string description;
         uint256 fundRaiseAmtGoal;
         uint256 raisedAmt;
-        Status status;
+        bool active;
     }
 
     // STATE VARIABLES
@@ -83,7 +78,7 @@ contract FundMe {
             description: fundRaiseDescription,
             fundRaiseAmtGoal: fundRaiseAmtGoal,
             raisedAmt: 0,
-            status: Status.Active
+            active: true
         });
 
         s_idToFundRaiseData[s_id] = newFundRaise;
@@ -98,7 +93,7 @@ contract FundMe {
     function fund(uint256 id) public payable {
         if (msg.value.getConversionRate(s_priceFeed) <= MINIMUM_USD) revert FundMe__InsufficientDonationAmt();
         if (id >= s_id) revert FundMe__FundRaiseIdNotFound();
-        if (s_idToFundRaiseData[id].status == Status.Completed) revert FundMe__FundRaiseEnded();
+        if (!s_idToFundRaiseData[id].active) revert FundMe__FundRaiseEnded();
 
         s_idToFundRaiseData[id].raisedAmt += msg.value;
         s_addressToAmountFunded[msg.sender][id] = msg.value;
@@ -109,9 +104,9 @@ contract FundMe {
 
     function withdraw(uint256 id) public onlyCreator(id) {
         if (id >= s_id) revert FundMe__FundRaiseIdNotFound();
-        if (s_idToFundRaiseData[id].status == Status.Completed) revert FundMe__FundRaiseEnded();
+        if (!s_idToFundRaiseData[id].active) revert FundMe__FundRaiseEnded();
 
-        s_idToFundRaiseData[id].status = Status.Completed;
+        s_idToFundRaiseData[id].active = false;
         uint256 amtRaised = s_idToFundRaiseData[id].raisedAmt;
         uint256 findersFee = (amtRaised * FINDERS_FEE) / FINDERS_FEE_PRECISION;
         uint256 creatorReceivedAmt = amtRaised - findersFee;
@@ -178,8 +173,8 @@ contract FundMe {
         return s_idToFundRaiseData[id].description;
     }
 
-    function getStatus(uint256 id) public view returns (uint256) {
-        return uint256(s_idToFundRaiseData[id].status);
+    function getStatus(uint256 id) public view returns (bool) {
+        return s_idToFundRaiseData[id].active;
     }
 
     function getFindersFee(uint256 id) public view returns (uint256) {

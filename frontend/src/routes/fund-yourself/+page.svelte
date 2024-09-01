@@ -44,7 +44,7 @@
 					id,
 					name: userFundData[0],
 					goal: formatEther(userFundData[1]),
-					active: Boolean(userFundData[2])
+					active: userFundData[2]
 				});
 			}
 

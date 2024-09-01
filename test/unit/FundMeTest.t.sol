@@ -45,19 +45,19 @@ contract FundMeTest is Test {
     }
 
     // PUBLIC CONSTANTS & IMMUTABLE VARIABLES
-    function testMinDollarAmountIsFive() public {
+    function testMinDollarAmountIsFive() public view {
         assertEq(fundMe.MINIMUM_USD(), 5e18);
     }
 
-    function testOwnerIsSetCorrectly() public {
+    function testOwnerIsSetCorrectly() public view {
         assertEq(fundMe.getOwner(), OWNER);
     }
 
-    function testIdStartsAtOne() public {
+    function testIdStartsAtOne() public view {
         assertEq(fundMe.s_id(), 1);
     }
 
-    function testVersionNumber() public {
+    function testVersionNumber() public view {
         assertEq(fundMe.getVersion(), 4);
     }
 
@@ -96,7 +96,7 @@ contract FundMeTest is Test {
         assertEq(expectedFundRaiseData.description, fundMe.getFundRaiseDescription(FUND_RAISE_ID));
         assertEq(expectedFundRaiseData.fundRaiseAmtGoal, fundMe.getFundRaiseAmtGoal(FUND_RAISE_ID));
         assertEq(expectedFundRaiseData.raisedAmt, fundMe.getRaisedAmt(FUND_RAISE_ID));
-        assertEq(0, fundMe.getStatus(FUND_RAISE_ID));
+        assertEq(true, fundMe.getStatus(FUND_RAISE_ID));
 
         // s_creatorToFundRaises
         assertEq(fundMe.getCreatorFundRaises(USER).length, 1);
@@ -190,7 +190,7 @@ contract FundMeTest is Test {
         vm.prank(USER);
         fundMe.withdraw(FUND_RAISE_ID);
 
-        assertEq(1, fundMe.getStatus(FUND_RAISE_ID));
+        assertEq(false, fundMe.getStatus(FUND_RAISE_ID));
     }
 
     function testCreatorWithdrawSingleFunder() public createAndFundAFundRaise {

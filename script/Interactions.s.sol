@@ -86,11 +86,13 @@ contract FundFundMe is Script {
 
 contract WithdrawFundMe is Script {
     string constant CONTRACT_NAME = "FundMe";
-    uint256 constant FUND_RAISE_ID = 1;
+    uint256[] FUND_RAISE_IDS = [1, 2, 3];
 
     function withdrawFundMe(address mostRecentlyDeployedAddress) public {
         vm.startBroadcast();
-        FundMe(payable(mostRecentlyDeployedAddress)).withdraw(FUND_RAISE_ID);
+        for (uint8 i = 0; i < FUND_RAISE_IDS.length; i++) {
+            FundMe(payable(mostRecentlyDeployedAddress)).withdraw(FUND_RAISE_IDS[i]);
+        }
         vm.stopBroadcast();
 
         console.log("Withdrew from FundMe");

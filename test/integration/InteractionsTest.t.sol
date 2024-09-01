@@ -14,14 +14,21 @@ contract InteractionsTest is StdCheats, Test {
     // Constant test variables
     address USER = address(1);
 
-    uint256 public constant SEND_VALUE = 0.01 ether;
+    uint256 public constant SEND_VALUE = 0.1 ether;
     uint256 public constant STARTING_BAL = 10 ether;
     uint256 public constant GAS_PRICE = 1;
+    address[] FUNDERS = [
+        0x70997970C51812dc3A010C7d01b50e0d17dc79C8,
+        0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC,
+        0x90F79bf6EB2c4f870365E785982E1f101E93b906
+    ];
 
     function setUp() external {
         DeployFundMe deployFundMe = new DeployFundMe();
         fundMe = deployFundMe.run();
-        vm.deal(USER, STARTING_BAL);
+        for (uint8 i = 0; i < FUNDERS.length; i++) {
+            vm.deal(FUNDERS[i], STARTING_BAL);
+        }
     }
 
     function testUserCanFundInteractions() public {
@@ -31,7 +38,7 @@ contract InteractionsTest is StdCheats, Test {
         FundFundMe fundFundMe = new FundFundMe();
         fundFundMe.fundFundMe(address(fundMe));
 
-        assertEq(address(fundMe).balance, SEND_VALUE);
+        assertEq(address(fundMe).balance, SEND_VALUE * 9); // Because we fund 3 fund-raises with SEND_VALUE w/ 3 FUNDERS
 
         WithdrawFundMe withdrawFundMe = new WithdrawFundMe();
         withdrawFundMe.withdrawFundMe(address(fundMe));
