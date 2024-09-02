@@ -27,7 +27,7 @@
 	$: nextBtnDisabled = currentPage + 1 >= Math.ceil(tableData.length / pageSize);
 	$: prevBtnDisabled = currentPage <= 0;
 
-	// DERIVED FUNCTIONS
+	// REACTIVE FUNCTIONALITY
 	$: {
 		if (tableData && table) {
 			adjustTableMinHeight();

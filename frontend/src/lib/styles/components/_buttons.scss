@@ -100,3 +100,25 @@
 		max-width: 1rem;
 	}
 }
+
+.back-btn {
+	align-items: center;
+	background-color: transparent;
+	color: black;
+	display: flex;
+	font-size: 14px;
+	gap: 0.25rem;
+	padding: 12px;
+	text-decoration: none;
+
+	&:hover:not(:disabled) {
+		text-decoration: underline;
+		border-radius: 8px;
+		cursor: pointer;
+	}
+
+	img {
+		max-height: 0.65rem;
+		max-width: 0.65rem;
+	}
+}
