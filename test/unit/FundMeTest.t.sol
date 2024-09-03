@@ -26,8 +26,9 @@ contract FundMeTest is Test {
     uint256 constant GAS_PRICE = 1;
     uint256 constant FUND_RAISE_ID = 1;
     uint256 constant FUND_RAISE_GOAL = 10 ether;
-    uint256 public constant FINDERS_FEE = 25; // basis points
-    uint256 private constant FINDERS_FEE_PRECISION = 10000;
+    uint256 constant FINDERS_FEE = 25; // basis points
+    uint256 constant FINDERS_FEE_PRECISION = 10000;
+    uint256 constant ANVIL_ETH_PRICE = 2000 ether;
     string constant FUND_RAISE_DESCRIPTION = "College tuition";
 
     // EVENTS
@@ -59,6 +60,11 @@ contract FundMeTest is Test {
 
     function testVersionNumber() public view {
         assertEq(fundMe.getVersion(), 4);
+    }
+
+    // GETTERS
+    function testGetPrice() public view {
+        assertEq(fundMe.getEthPrice(), ANVIL_ETH_PRICE);
     }
 
     // TESTING CREATE FUND RAISE

@@ -21,6 +21,7 @@ error FundMe__FundRaiseEnded();
 contract FundMe {
     // TYPE DECLARATIONS
     using PriceConverter for uint256;
+    using PriceConverter for AggregatorV3Interface;
 
     struct FundRaiseData {
         uint256 id;
@@ -180,5 +181,9 @@ contract FundMe {
     function getFindersFee(uint256 id) public view returns (uint256) {
         uint256 raisedAmt = s_idToFundRaiseData[id].raisedAmt;
         return (raisedAmt * FINDERS_FEE) / FINDERS_FEE_PRECISION;
+    }
+
+    function getEthPrice() public view returns (uint256) {
+        return s_priceFeed.getPrice();
     }
 }

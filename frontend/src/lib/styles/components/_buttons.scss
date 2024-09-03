@@ -62,6 +62,11 @@
 		box-shadow: 0 4px $TEAL;
 	}
 
+	&:disabled {
+		border: 1px solid $DEEP_BLUE_25;
+		box-shadow: 0 2px $DEEP_BLUE_25;
+	}
+
 	img {
 		max-height: 16px;
 		max-width: 16px;

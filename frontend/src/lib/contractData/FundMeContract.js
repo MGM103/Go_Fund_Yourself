@@ -1,9 +1,10 @@
-export const FUND_ME_ADDRESS = '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512';
+export const FUND_ME_ADDRESS = '0x0b306bf915c4d645ff596e518faf3f9669b97016';
 
-export const FUND_ME_GETTERS = {
+export const FUND_ME_READS = {
 	GET_AMOUNT_DONATED: 'getAddressToAmountFunded',
 	GET_CREATOR_FUND_RAISES: 'getCreatorFundRaises',
 	GET_DESCRIPTION: 'getFundRaiseDescription',
+	GET_ETH_PRICE: 'getEthPrice',
 	GET_FINDERS_FEE: 'getFindersFee',
 	GET_FUND_RAISE_CREATOR: 'getCreator',
 	GET_FUND_RAISE_DONOR: 'getFunder',
@@ -12,4 +13,8 @@ export const FUND_ME_GETTERS = {
 	GET_FUND_RAISE_STATUS: 'getStatus',
 	GET_OWNER: 'getOwner',
 	GET_RAISED_AMOUNT: 'getRaisedAmt'
+};
+
+export const FUND_ME_WRITES = {
+	CREATE_FUND_RAISE: 'createFundRaise'
 };

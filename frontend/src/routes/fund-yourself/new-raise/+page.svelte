@@ -1,11 +1,61 @@
 <script>
+	import { onMount } from 'svelte';
+	import { connected, wagmiConfig } from 'svelte-wagmi';
+	import { readContract, writeContract } from '@wagmi/core';
+	import { formatEther, parseEther } from 'viem';
+	import {
+		FUND_ME_ADDRESS,
+		FUND_ME_READS,
+		FUND_ME_WRITES
+	} from '$lib/contractData/FundMeContract.js';
+	import abi from '$lib/contractData/abi/FundMe.json';
 	import { leftArrow } from '$lib/assets';
 
 	// STATE VARIABLES
 	let textAreaMaxLength = 1500;
 	let textAreaMaxContent = '';
+	let ethPrice = 0;
+	let fundRaiseGoal = 0;
+
+	// LIFECYCLE
+	onMount(async () => {
+		const ethPriceInGwei = await readContract($wagmiConfig, {
+			abi,
+			address: FUND_ME_ADDRESS,
+			functionName: FUND_ME_READS.GET_ETH_PRICE
+		});
+
+		ethPrice = formatEther(ethPriceInGwei);
+	});
 
 	// FUNCTIONS
+	async function handleSubmit(event) {
+		event.preventDefault();
+
+		try {
+			const formData = new FormData(event.target);
+			const createNewFundRaiseParams = Object.fromEntries(formData.entries());
+
+			const createFundRaiseTxn = await createNewFundRaise(
+				createNewFundRaiseParams.FundRaiseTitle,
+				parseEther(createNewFundRaiseParams.FundRaiseGoalAmount)
+			);
+		} catch (err) {
+			console.error('Error during form submission:', err);
+		}
+	}
+
+	async function createNewFundRaise(name, goalAmount) {
+		const txnHash = await writeContract($wagmiConfig, {
+			abi,
+			address: FUND_ME_ADDRESS,
+			functionName: FUND_ME_WRITES.CREATE_FUND_RAISE,
+			args: [name, goalAmount]
+		});
+
+		return txnHash;
+	}
+
 	function updateCharCounter(event) {
 		textAreaMaxContent = event.target.value;
 	}
@@ -16,25 +66,31 @@
 
 	<div class="form-container">
 		<h2 class="h3">Fund raise details</h2>
-		<form id="create-fundraise-form">
-			<label
-				>Name <input
-					name="FundRaiseTitle"
-					type="text"
-					placeholder="My Fund-raise"
-					required
-				/></label
-			>
-			<label
-				>Fund Raise Goal <input
-					name="FundRaiseDescription"
-					type="number"
-					min="0"
-					step="0.01"
-					placeholder="0.5 eth"
-					required
-				/></label
-			>
+		<form id="create-fundraise-form" on:submit={handleSubmit}>
+			<div class="contract-inputs">
+				<label
+					>Name <input
+						name="FundRaiseTitle"
+						type="text"
+						placeholder="My Fund-raise"
+						required
+					/></label
+				>
+				<label
+					>Fund Raise Goal (ETH)<input
+						bind:value={fundRaiseGoal}
+						name="FundRaiseGoalAmount"
+						type="number"
+						min="0"
+						step="0.01"
+						placeholder="0.5 eth"
+						required
+					/>
+					{#if fundRaiseGoal}
+						<span>Value USD: ${fundRaiseGoal * ethPrice}</span>
+					{/if}
+				</label>
+			</div>
 			<label
 				>Description
 
@@ -50,7 +106,7 @@
 				<a class="back-btn" href="/fund-yourself"
 					><img src={leftArrow} alt="left-arrow-icon" />back</a
 				>
-				<button class="power-btn">Create</button>
+				<button class="power-btn" disabled={!$connected}>Create</button>
 			</div>
 		</form>
 	</div>
@@ -107,6 +163,19 @@
 					height: 350px;
 					padding-bottom: 1.5rem;
 					resize: none;
+				}
+
+				.contract-inputs {
+					align-items: center;
+					display: flex;
+					gap: 3rem;
+					justify-content: flex-start;
+					margin-bottom: 1rem;
+					margin-top: 2rem;
+
+					label {
+						flex: 1;
+					}
 				}
 
 				.btn-container {
