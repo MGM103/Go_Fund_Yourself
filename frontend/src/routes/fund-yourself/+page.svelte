@@ -7,7 +7,7 @@
 	import { add } from '$lib/assets';
 	import { goto } from '$app/navigation';
 	import { DashboardTable, DisconnectedTablePlaceholder } from '$lib/components';
-	import { FUND_ME_ADDRESS, FUND_ME_GETTERS } from '$lib/contractData/FundMeContract.js';
+	import { FUND_ME_ADDRESS, FUND_ME_READS } from '$lib/contractData/FundMeContract.js';
 
 	// STATE VARIABLES
 	let totalFundRaises = 0;
@@ -58,7 +58,7 @@
 		const fundRaisesIDArr = await readContract($wagmiConfig, {
 			abi,
 			address: FUND_ME_ADDRESS,
-			functionName: FUND_ME_GETTERS.GET_CREATOR_FUND_RAISES,
+			functionName: FUND_ME_READS.GET_CREATOR_FUND_RAISES,
 			args: [$signerAddress]
 		});
 
@@ -69,7 +69,7 @@
 		const description = await readContract($wagmiConfig, {
 			abi,
 			address: FUND_ME_ADDRESS,
-			functionName: FUND_ME_GETTERS.GET_DESCRIPTION,
+			functionName: FUND_ME_READS.GET_DESCRIPTION,
 			args: [id]
 		});
 
@@ -80,7 +80,7 @@
 		const status = await readContract($wagmiConfig, {
 			abi,
 			address: FUND_ME_ADDRESS,
-			functionName: FUND_ME_GETTERS.GET_FUND_RAISE_STATUS,
+			functionName: FUND_ME_READS.GET_FUND_RAISE_STATUS,
 			args: [id]
 		});
 
@@ -91,7 +91,7 @@
 		const goalAmount = readContract($wagmiConfig, {
 			abi,
 			address: FUND_ME_ADDRESS,
-			functionName: FUND_ME_GETTERS.GET_FUND_RAISE_GOAL,
+			functionName: FUND_ME_READS.GET_FUND_RAISE_GOAL,
 			args: [id]
 		});
 
@@ -102,7 +102,7 @@
 		const fundsRaised = readContract($wagmiConfig, {
 			abi,
 			address: FUND_ME_ADDRESS,
-			functionName: FUND_ME_GETTERS.GET_RAISED_AMOUNT,
+			functionName: FUND_ME_READS.GET_RAISED_AMOUNT,
 			args: [id]
 		});
 
@@ -113,7 +113,7 @@
 		const allDonors = readContract($wagmiConfig, {
 			abi,
 			address: FUND_ME_ADDRESS,
-			functionName: FUND_ME_GETTERS.GET_FUND_RAISE_DONORS,
+			functionName: FUND_ME_READS.GET_FUND_RAISE_DONORS,
 			args: [id]
 		});
 
