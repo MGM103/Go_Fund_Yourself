@@ -1,5 +1,5 @@
 import { json, text } from '@sveltejs/kit';
-import { addDescription } from '$lib/db/database';
+import { addDescription } from '$lib/server/db/database';
 
 export async function POST({ request }) {
 	try {

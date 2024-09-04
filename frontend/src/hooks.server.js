@@ -1,4 +1,4 @@
-import { initialiseDatabase } from '$lib/db/database';
+import { initialiseDatabase } from '$lib/server/db/database';
 
 initialiseDatabase();
 
