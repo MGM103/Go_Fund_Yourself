@@ -1,15 +1,18 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { connected, wagmiConfig } from 'svelte-wagmi';
-	import { readContract, writeContract } from '@wagmi/core';
+	import { readContract, watchContractEvent, writeContract } from '@wagmi/core';
 	import { formatEther, parseEther } from 'viem';
 	import {
 		FUND_ME_ADDRESS,
+		FUND_ME_EVENTS,
 		FUND_ME_READS,
 		FUND_ME_WRITES
 	} from '$lib/contractData/FundMeContract.js';
 	import abi from '$lib/contractData/abi/FundMe.json';
 	import { leftArrow } from '$lib/assets';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	// STATE VARIABLES
 	let textAreaMaxLength = 1500;
@@ -28,18 +31,18 @@
 		ethPrice = formatEther(ethPriceInGwei);
 	});
 
+	onDestroy(() => {
+		unwatch();
+	});
+
 	// FUNCTIONS
 	async function handleSubmit(event) {
-		event.preventDefault();
-
 		try {
 			const formData = new FormData(event.target);
-			const createNewFundRaiseParams = Object.fromEntries(formData.entries());
+			const fundRaiseTitle = formData.get('FundRaiseTitle');
+			const fundRaiseGoalAmount = formData.get('FundRaiseGoalAmount');
 
-			const createFundRaiseTxn = await createNewFundRaise(
-				createNewFundRaiseParams.FundRaiseTitle,
-				parseEther(createNewFundRaiseParams.FundRaiseGoalAmount)
-			);
+			await createNewFundRaise(fundRaiseTitle, parseEther(fundRaiseGoalAmount));
 		} catch (err) {
 			console.error('Error during form submission:', err);
 		}
@@ -59,6 +62,41 @@
 	function updateCharCounter(event) {
 		textAreaMaxContent = event.target.value;
 	}
+
+	// WATCHERS
+	const unwatch = watchContractEvent($wagmiConfig, {
+		abi,
+		address: FUND_ME_ADDRESS,
+		eventName: FUND_ME_EVENTS.CREATE_FUND_RAISE,
+		async onLogs(logs) {
+			if (logs) {
+				const id = Number(logs[0].args?.id);
+				const title = logs[0].args?.description;
+				const description = textAreaMaxContent;
+
+				try {
+					const response = await fetch(`${$page.url.pathname}`, {
+						method: 'POST',
+						body: JSON.stringify({ id, title, description }),
+						headers: {
+							'content-type': 'application/json'
+						}
+					});
+
+					if (!response.ok) {
+						throw new Error('Failed to add description to db');
+					}
+
+					goto('/fund-yourself');
+				} catch (err) {
+					console.error('Insertion to db failed', err);
+				}
+			}
+		},
+		onError(err) {
+			console.log(err);
+		}
+	});
 </script>
 
 <div class="content-container">
@@ -66,7 +104,7 @@
 
 	<div class="form-container">
 		<h2 class="h3">Fund raise details</h2>
-		<form id="create-fundraise-form" on:submit={handleSubmit}>
+		<form id="create-fundraise-form" on:submit|preventDefault={handleSubmit}>
 			<div class="contract-inputs">
 				<label
 					>Name <input
@@ -96,6 +134,7 @@
 
 				<textarea
 					on:input={updateCharCounter}
+					name="FundRaiseDescription"
 					maxlength={textAreaMaxLength}
 					placeholder="I would like to raise funds for..."
 					rows="10"
@@ -106,7 +145,7 @@
 				<a class="back-btn" href="/fund-yourself"
 					><img src={leftArrow} alt="left-arrow-icon" />back</a
 				>
-				<button class="power-btn" disabled={!$connected}>Create</button>
+				<button class="power-btn" type="submit" disabled={!$connected}>Create</button>
 			</div>
 		</form>
 	</div>

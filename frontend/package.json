@@ -28,6 +28,7 @@
 	"dependencies": {
 		"@wagmi/connectors": "^5.1.7",
 		"@wagmi/core": "^2.13.4",
+		"better-sqlite3": "^11.2.1",
 		"svelte-wagmi": "^1.0.7",
 		"viem": "^2.19.9"
 	}

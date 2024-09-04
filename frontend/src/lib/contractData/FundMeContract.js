@@ -1,4 +1,4 @@
-export const FUND_ME_ADDRESS = '0x0b306bf915c4d645ff596e518faf3f9669b97016';
+export const FUND_ME_ADDRESS = '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512';
 
 export const FUND_ME_READS = {
 	GET_AMOUNT_DONATED: 'getAddressToAmountFunded',
@@ -17,4 +17,8 @@ export const FUND_ME_READS = {
 
 export const FUND_ME_WRITES = {
 	CREATE_FUND_RAISE: 'createFundRaise'
+};
+
+export const FUND_ME_EVENTS = {
+	CREATE_FUND_RAISE: 'createdFundRaise'
 };
