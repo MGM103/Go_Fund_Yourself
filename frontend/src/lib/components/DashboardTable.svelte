@@ -1,5 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
+	import { goto } from '$app/navigation';
 	import { leftArrow, rightArrow } from '$lib/assets';
 	import { toCamelCase } from '$lib/utils';
 	import Dropdown from './Dropdown.svelte';
@@ -42,6 +43,17 @@
 		}
 	}
 
+	function handleFundRaiseEnterKey(event, fundRaiseData) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			navigateToFundRaise(fundRaiseData);
+		}
+	}
+
+	function navigateToFundRaise(fundRaiseData) {
+		const url = `${fundRaiseData.url}${fundRaiseData.id}?title=${encodeURIComponent(fundRaiseData.name)}&goalAmt=${encodeURIComponent(fundRaiseData.goal)}&active=${encodeURIComponent(fundRaiseData.active)}`;
+		goto(url);
+	}
+
 	function updateActiveTab(tabIndex) {
 		if (tabIndex <= tableTabs?.length) {
 			activeTab = tabIndex;
@@ -76,7 +88,14 @@
 	</div>
 	<div bind:this={table} class="dashboard-table">
 		{#each filteredData as fundRaise}
-			<div class="fund">
+			<div
+				class="fund"
+				on:click={() => navigateToFundRaise(fundRaise)}
+				on:keydown={(event) => handleFundRaiseEnterKey(event, fundRaise)}
+				tabindex="0"
+				aria-label={fundRaise.name}
+				role="button"
+			>
 				<h3>{fundRaise.name}</h3>
 				<div class="details">
 					<p>{fundRaise.goal} eth</p>

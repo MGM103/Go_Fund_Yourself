@@ -16,7 +16,7 @@
 
 	// STATE VARIABLES
 	let textAreaMaxLength = 1500;
-	let textAreaMaxContent = '';
+	let textAreaContent = '';
 	let ethPrice = 0;
 	let fundRaiseGoal = 0;
 
@@ -60,7 +60,7 @@
 	}
 
 	function updateCharCounter(event) {
-		textAreaMaxContent = event.target.value;
+		textAreaContent = event.target.value;
 	}
 
 	// WATCHERS
@@ -72,7 +72,7 @@
 			if (logs) {
 				const id = Number(logs[0].args?.id);
 				const title = logs[0].args?.description;
-				const description = textAreaMaxContent;
+				const description = textAreaContent;
 
 				try {
 					const response = await fetch(`${$page.url.pathname}`, {
@@ -139,7 +139,7 @@
 					placeholder="I would like to raise funds for..."
 					rows="10"
 					required
-				></textarea><span>{textAreaMaxContent.length} / {textAreaMaxLength}</span>
+				></textarea><span>{textAreaContent.length} / {textAreaMaxLength}</span>
 			</label>
 			<div class="btn-container">
 				<a class="back-btn" href="/fund-yourself"

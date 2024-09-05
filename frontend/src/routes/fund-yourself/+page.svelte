@@ -14,6 +14,7 @@
 	let totalFunding = 0;
 	let totalDonors = 0;
 	let dashboardData = [];
+	const navigationUrl = '/fund-yourself/view-fund-raise/';
 
 	// DERIVED VARIABLES
 	$: filteredData = dashboardData;
@@ -44,7 +45,8 @@
 					id,
 					name: userFundData[0],
 					goal: formatEther(userFundData[1]),
-					active: userFundData[2]
+					active: userFundData[2],
+					url: navigationUrl
 				});
 			}
 
