@@ -17,7 +17,7 @@ export function initialiseDatabase() {
 // Get description by ID
 export function getDescriptionById(id) {
 	const sql = `
-    SELECT id, description FROM descriptions WHERE id = $id
+    SELECT description FROM descriptions WHERE id = $id
   `;
 
 	const stmt = db.prepare(sql);

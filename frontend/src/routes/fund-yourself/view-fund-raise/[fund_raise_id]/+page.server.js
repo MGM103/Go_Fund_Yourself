@@ -29,12 +29,12 @@ export async function load({ params, url }) {
 		return result;
 	};
 
-	const description = getDescription();
+	const descriptionResponse = getDescription();
 
 	return {
 		id,
 		title,
-		description,
+		descriptionResponse,
 		active,
 		amountRaised,
 		goalAmt,
