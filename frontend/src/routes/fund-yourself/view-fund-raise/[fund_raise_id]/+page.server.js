@@ -32,7 +32,6 @@ export async function load({ params, url }) {
 	};
 
 	const descriptionResponse = getDescription();
-	console.log(`Status: ${active}`);
 
 	return {
 		id,

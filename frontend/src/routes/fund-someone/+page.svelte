@@ -4,22 +4,26 @@
 	import { DashboardTable, DisconnectedTablePlaceholder } from '$lib/components';
 	import mockFunds from '$lib/mocks/mockFunds.js';
 
+	// PROPS
+	export let data;
+
 	// STATE VARIABLES
-	let filteredData = mockFunds;
+	let dashboardData = data.fundRaises;
+	let filteredData = data.fundRaises;
 
 	// FUNCTIONS
 	function handleAllRaises() {
-		filteredData = mockFunds;
+		filteredData = dashboardData;
 	}
 
 	function handleActiveRaises() {
-		filteredData = mockFunds.filter((fund) => {
+		filteredData = dashboardData.filter((fund) => {
 			return fund.active;
 		});
 	}
 
 	function handleCompletedRaises() {
-		filteredData = mockFunds.filter((fund) => {
+		filteredData = dashboardData.filter((fund) => {
 			return !fund.active;
 		});
 	}
