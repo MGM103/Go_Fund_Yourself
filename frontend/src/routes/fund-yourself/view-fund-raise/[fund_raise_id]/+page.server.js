@@ -32,6 +32,7 @@ export async function load({ params, url }) {
 	};
 
 	const descriptionResponse = getDescription();
+	console.log(`Status: ${active}`);
 
 	return {
 		id,
@@ -47,13 +48,9 @@ export async function load({ params, url }) {
 export const actions = {
 	updateFundRaiseDescription: async ({ params, request }) => {
 		try {
-			console.log(`Entered`);
 			const id = params.fund_raise_id;
-			console.log(`Here is the id: ${id}`);
 			const data = await request.formData();
-			console.log(`Got data: ${data}`);
 			const newDescription = data.get('fundRaiseDescription');
-			console.log(`Got description: ${newDescription}`);
 
 			updateDescription(id, newDescription);
 

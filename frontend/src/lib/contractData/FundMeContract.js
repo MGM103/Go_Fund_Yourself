@@ -16,7 +16,8 @@ export const FUND_ME_READS = {
 };
 
 export const FUND_ME_WRITES = {
-	CREATE_FUND_RAISE: 'createFundRaise'
+	CREATE_FUND_RAISE: 'createFundRaise',
+	WITHDRAW_FUNDS: 'withdraw'
 };
 
 export const FUND_ME_EVENTS = {

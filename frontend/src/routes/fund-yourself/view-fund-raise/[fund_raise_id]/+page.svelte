@@ -1,6 +1,11 @@
 <script>
+	import { connected, wagmiConfig } from 'svelte-wagmi';
+	import { writeContract } from '@wagmi/core';
 	import { formatEther } from 'viem';
+	import { FUND_ME_ADDRESS, FUND_ME_WRITES } from '$lib/contractData/FundMeContract';
+	import abi from '$lib/contractData/abi/FundMe.json';
 	import { enhance } from '$app/forms';
+	import { goto } from '$app/navigation';
 	import { ProgressIndicator } from '$lib/components';
 	import { bronzeMedal, edit, goldMedal, leftArrow, save, silverMedal } from '$lib/assets';
 	import { convertAddressToStrAbbreviated } from '$lib/utils';
@@ -23,6 +28,7 @@
 
 	// DERIVED VARIABLES
 	$: descriptionInputEnabled = !description;
+	$: isActive = JSON.parse(data.active);
 
 	// FUNCTIONS
 	function getTopFunders() {
@@ -40,18 +46,40 @@
 		// Update form state without losing the URL
 		await update();
 	}
+
+	async function handleWithdraw(id) {
+		await withdrawFundRaiseFunds(id);
+		goto('/fund-yourself');
+	}
+
+	async function withdrawFundRaiseFunds(id) {
+		const result = await writeContract($wagmiConfig, {
+			abi,
+			address: FUND_ME_ADDRESS,
+			functionName: FUND_ME_WRITES.WITHDRAW_FUNDS,
+			args: [BigInt(id)]
+		});
+
+		console.log(result);
+	}
 </script>
 
 <div class="page-container">
 	<div class="header-section">
 		<h1>{data.title}</h1>
-		<button class="power-btn"> Withdraw</button>
+		{#if isActive}
+			<button on:click={() => handleWithdraw(fundRaiseId)} class="power-btn" disabled={!$connected}>
+				Withdraw</button
+			>
+		{/if}
 	</div>
 	<div class="fund-raise-details">
 		<div class="fund-raise-form">
 			<h2>Fund raise details</h2>
 			<span>Name</span>
 			<p>{data.title}</p>
+			<span>Status</span>
+			<p>{isActive ? 'Active' : 'Completed'}</p>
 			<span>Goal</span>
 			<p>{data.goalAmt} eth</p>
 			<form
