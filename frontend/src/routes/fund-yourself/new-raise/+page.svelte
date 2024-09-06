@@ -71,13 +71,12 @@
 		async onLogs(logs) {
 			if (logs) {
 				const id = Number(logs[0].args?.id);
-				const title = logs[0].args?.description;
 				const description = textAreaContent;
 
 				try {
 					const response = await fetch(`${$page.url.pathname}`, {
 						method: 'POST',
-						body: JSON.stringify({ id, title, description }),
+						body: JSON.stringify({ id, description }),
 						headers: {
 							'content-type': 'application/json'
 						}

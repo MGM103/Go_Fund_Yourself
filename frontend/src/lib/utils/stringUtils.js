@@ -1,4 +1,4 @@
-function toCamelCase(...strings) {
+export function toCamelCase(...strings) {
 	return strings
 		.map((str, index) => {
 			// Lowercase the entire string and split it by spaces or hyphens
@@ -19,4 +19,6 @@ function toCamelCase(...strings) {
 		.join('');
 }
 
-export default toCamelCase;
+export function convertAddressToStrAbbreviated(address, startLength, endLength) {
+	return `${address.slice(0, startLength)}...${address.slice(-endLength)}`;
+}

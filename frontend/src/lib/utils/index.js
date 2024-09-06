@@ -1,3 +1,4 @@
-import toCamelCase from './stringUtils';
+import { convertAddressToStrAbbreviated } from './stringUtils';
+import { toCamelCase } from './stringUtils';
 
-export { toCamelCase };
+export { convertAddressToStrAbbreviated, toCamelCase };

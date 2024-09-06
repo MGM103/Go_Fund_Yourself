@@ -3,9 +3,9 @@ import { addDescription } from '$lib/server/db/database';
 
 export async function POST({ request }) {
 	try {
-		const { id, title, description } = await request.json();
+		const { id, description } = await request.json();
 
-		addDescription(id, title, description);
+		addDescription(id, description);
 		return json({ message: 'Description added successfully' }, { status: 200 });
 	} catch (err) {
 		console.error('Error while adding description:', err);

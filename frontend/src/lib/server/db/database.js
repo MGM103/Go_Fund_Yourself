@@ -6,7 +6,6 @@ export function initialiseDatabase() {
 	const sql = `
     CREATE TABLE IF NOT EXISTS descriptions (
       id INTEGER PRIMARY KEY,
-      title TEXT NOT NULL,
       description TEXT NOT NULL
     );
   `;
@@ -39,11 +38,21 @@ export function getDescriptions() {
 }
 
 // Insert a description
-export function addDescription(id, title, description) {
+export function addDescription(id, description) {
 	const sql = `
-    INSERT into descriptions (id, title, description) VALUES ($id, $title, $description)
+    INSERT OR IGNORE INTO descriptions (id, description) VALUES ($id, $description)
   `;
 
 	const stmt = db.prepare(sql);
-	stmt.run({ id, title, description });
+	stmt.run({ id, description });
+}
+
+// Update a description
+export function updateDescription(id, description) {
+	const sql = `
+		INSERT OR REPLACE INTO descriptions (id, description) VALUES ($id, $description)
+	`;
+
+	const stmt = db.prepare(sql);
+	stmt.run({ id, description });
 }
