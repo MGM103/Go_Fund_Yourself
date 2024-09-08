@@ -236,7 +236,8 @@
 
 					.funder-addrs {
 						max-height: 150px;
-						overflow: auto;
+						overflow-y: auto;
+						padding-right: 1rem;
 					}
 				}
 			}

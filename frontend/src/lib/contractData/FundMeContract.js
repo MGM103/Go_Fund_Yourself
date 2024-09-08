@@ -11,12 +11,14 @@ export const FUND_ME_READS = {
 	GET_FUND_RAISE_DONORS: 'getFunders',
 	GET_FUND_RAISE_GOAL: 'getFundRaiseAmtGoal',
 	GET_FUND_RAISE_STATUS: 'getStatus',
+	GET_MINIMUM_DONATION_USD: 'MINIMUM_USD',
 	GET_OWNER: 'getOwner',
 	GET_RAISED_AMOUNT: 'getRaisedAmt'
 };
 
 export const FUND_ME_WRITES = {
 	CREATE_FUND_RAISE: 'createFundRaise',
+	DONATE: 'fund',
 	WITHDRAW_FUNDS: 'withdraw'
 };
 

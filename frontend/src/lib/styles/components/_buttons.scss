@@ -127,3 +127,26 @@
 		max-width: 0.65rem;
 	}
 }
+
+.cancel-btn {
+	background-color: $DEEP_BLUE_10;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	padding: 0.75rem;
+
+	&:hover {
+		background-color: $DEEP_BLUE_25;
+	}
+}
+
+.max-btn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
