@@ -23,5 +23,6 @@ export const FUND_ME_WRITES = {
 };
 
 export const FUND_ME_EVENTS = {
-	CREATE_FUND_RAISE: 'createdFundRaise'
+	CREATE_FUND_RAISE: 'createdFundRaise',
+	DONATED: 'fundedFundRaise'
 };

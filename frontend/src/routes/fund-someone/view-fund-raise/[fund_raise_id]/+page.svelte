@@ -1,8 +1,7 @@
 <script>
 	import { connected, wagmiConfig } from 'svelte-wagmi';
-	import { writeContract } from '@wagmi/core';
+	import { waitForTransactionReceipt, writeContract } from '@wagmi/core';
 	import { parseEther } from 'viem';
-	import { invalidateAll } from '$app/navigation';
 	import abi from '$lib/contractData/abi/FundMe.json';
 	import { FUND_ME_ADDRESS, FUND_ME_WRITES } from '$lib/contractData/FundMeContract';
 	import { Modal, ProgressIndicator } from '$lib/components';
@@ -43,9 +42,12 @@
 	async function handleDonation(event) {
 		console.log(`Amount received: ${event.detail.amount}`);
 		const donationAmt = event.detail.amount?.toString();
-		await donate(donationAmt);
+		const txnReceipt = await donate(donationAmt);
 		handleModalClose();
-		await invalidateAll();
+		await waitForTransactionReceipt($wagmiConfig, {
+			hash: txnReceipt
+		});
+		location.reload();
 	}
 
 	function handleModalClose() {
@@ -212,5 +214,9 @@
 				padding-right: 1rem;
 			}
 		}
+	}
+
+	.back-btn {
+		width: max-content;
 	}
 </style>
