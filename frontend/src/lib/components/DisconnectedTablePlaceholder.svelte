@@ -17,11 +17,9 @@
 </div>
 
 <style scoped lang="scss">
-	@import '../styles/constants.scss';
-
 	.placeholder-container {
 		align-items: center;
-		background-color: $DEEP_BLUE_10;
+		background-color: var(--color-tertiary);
 		border-radius: 12px;
 		display: flex;
 		flex-direction: column;

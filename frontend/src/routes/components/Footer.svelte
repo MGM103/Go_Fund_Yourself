@@ -25,10 +25,8 @@
 </footer>
 
 <style scoped lang="scss">
-	@import '../../lib/styles/constants.scss';
-
 	#site-footer {
-		color: $LIGHT_TEAL;
+		color: var(--color-primary);
 		display: flex;
 		flex-direction: column;
 		margin: 0 auto;
@@ -54,17 +52,17 @@
 			margin-bottom: 0.25rem;
 		}
 		a {
-			color: $LIGHT_TEAL;
+			color: var(--color-primary);
 			text-decoration: none;
 
 			&:hover {
-				color: $TEAL_50;
+				color: var(--color-secondary);
 			}
 		}
 
 		&::before {
 			content: '';
-			background-color: $DEEP_BLUE;
+			background-color: var(--color-secondary);
 			height: 100%;
 			left: 50%;
 			position: absolute;

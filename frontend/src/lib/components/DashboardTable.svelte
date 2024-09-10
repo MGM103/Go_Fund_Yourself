@@ -121,8 +121,6 @@
 </div>
 
 <style scoped lang="scss">
-	@import '../styles/constants.scss';
-
 	.table-container {
 		h2 {
 			margin-top: 1rem;
@@ -138,7 +136,7 @@
 				gap: 1rem;
 
 				.active {
-					border-bottom: 2px solid $TEAL_50;
+					border-bottom: 2px solid var(--color-tertiary);
 					margin-bottom: -2px;
 				}
 			}
@@ -167,8 +165,8 @@
 
 				&:hover {
 					background:
-						linear-gradient($LIGHT_TEAL_10, $LIGHT_TEAL_10) padding-box,
-						linear-gradient(0deg, $BLUE 0%, $BLUE 100%) border-box;
+						linear-gradient(var(--color-secondary), var(--color-tertiary)) padding-box,
+						linear-gradient(0deg, var(--color-secondary) 0%, var(--color-secondary) 100%) border-box;
 					border-radius: 8px;
 				}
 

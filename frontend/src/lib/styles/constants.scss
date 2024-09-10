@@ -1,5 +1,3 @@
-@import 'functions';
-
 // HEADER SIZES
 $H1_SIZE: 2rem;
 $H2_SIZE: 1.5rem;
@@ -9,26 +7,12 @@ $H5_SIZE: 1.075rem;
 $H6_SIZE: 1rem;
 
 // COLOURS
-$LIGHT_TEAL: rgb(228, 249, 245);
-$LIGHT_TEAL_75: tint($LIGHT_TEAL, 75%);
-$LIGHT_TEAL_50: tint($LIGHT_TEAL, 50%);
-$LIGHT_TEAL_25: tint($LIGHT_TEAL, 25%);
-$LIGHT_TEAL_10: tint($LIGHT_TEAL, 10%);
+$PRIMARY_LIGHT: hsl(200, 50%, 90%);
+$SECONDARY_LIGHT: hsl(200, 50%, 10%);
+$TERTIARY_LIGHT: hsl(260, 80%, 20%);
+$ACCENT_LIGHT: hsl(140, 80%, 20%);
 
-$TEAL: rgb(48, 227, 202);
-$TEAL_75: tint($TEAL, 75%);
-$TEAL_50: tint($TEAL, 50%);
-$TEAL_25: tint($TEAL, 25%);
-$TEAL_10: tint($TEAL, 10%);
-
-$BLUE: rgb(48, 227, 202);
-$BLUE_75: tint($BLUE, 75%);
-$BLUE_50: tint($BLUE, 50%);
-$BLUE_25: tint($BLUE, 25%);
-$BLUE_10: tint($BLUE, 10%);
-
-$DEEP_BLUE: rgb(64, 81, 78);
-$DEEP_BLUE_75: tint($DEEP_BLUE, 75%);
-$DEEP_BLUE_50: tint($DEEP_BLUE, 50%);
-$DEEP_BLUE_25: tint($DEEP_BLUE, 25%);
-$DEEP_BLUE_10: tint($DEEP_BLUE, 10%);
+$PRIMARY_DARK: hsl(200, 50%, 10%);
+$SECONDARY_DARK: hsl(200, 50%, 90%);
+$TERTIARY_DARK: hsl(260, 80%, 80%);
+$ACCENT_DARK: hsl(140, 80%, 80%);

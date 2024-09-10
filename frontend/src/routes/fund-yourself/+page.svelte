@@ -178,8 +178,6 @@
 </div>
 
 <style scoped lang="scss">
-	@import '../../lib/styles/constants.scss';
-
 	.create-new-raise {
 		align-items: center;
 		display: flex;
@@ -190,8 +188,10 @@
 	.fund-raise-analytics {
 		align-items: center;
 		border-radius: 12px;
-		border-top: 4px solid $TEAL_25;
-		box-shadow: 0 8px 8px #00000015;
+		border-top: 4px solid var(--color-accent);
+		box-shadow:
+			0 2px 2px var(--color-shadow-a),
+			0 4px 4px var(--color-shadow-b);
 		display: flex;
 		justify-content: space-between;
 		margin-bottom: 4rem;
@@ -199,7 +199,7 @@
 
 		.analytic {
 			align-items: center;
-			border-right: 1px solid $DEEP_BLUE_25;
+			border-right: 1px solid var(--color-secondary);
 			display: flex;
 			flex-direction: column;
 			flex: 1;

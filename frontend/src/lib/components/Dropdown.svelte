@@ -34,8 +34,6 @@
 </label>
 
 <style scoped lang="scss">
-	@import '../styles/constants.scss';
-
 	label {
 		align-items: center;
 		display: flex;
@@ -45,8 +43,9 @@
 
 	select {
 		background-color: transparent;
-		border: 1px solid $DEEP_BLUE_25;
+		border: 1px solid var(--color-tertiary);
 		border-radius: 8px;
+		color: var(--color-secondary);
 		padding: 6px 12px;
 	}
 </style>

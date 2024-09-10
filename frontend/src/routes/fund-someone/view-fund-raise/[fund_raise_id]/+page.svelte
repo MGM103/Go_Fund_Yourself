@@ -123,9 +123,8 @@
 >
 
 <style scoped lang="scss">
-	@import '../../../../lib/styles/constants.scss';
 	.content-container {
-		background-color: $LIGHT_TEAL;
+		background-color: var(--color-primary);
 		border-radius: 8px;
 		padding: 1rem 2.5rem;
 	}

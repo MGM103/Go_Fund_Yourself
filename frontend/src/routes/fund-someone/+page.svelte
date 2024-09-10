@@ -1,8 +1,6 @@
 <script>
-	import { goto } from '$app/navigation';
 	import { connected } from 'svelte-wagmi';
 	import { DashboardTable, DisconnectedTablePlaceholder } from '$lib/components';
-	import mockFunds from '$lib/mocks/mockFunds.js';
 
 	// PROPS
 	export let data;
@@ -49,8 +47,6 @@
 </div>
 
 <style scoped lang="scss">
-	@import '../../lib/styles/constants.scss';
-
 	.page-title {
 		padding-bottom: 1rem;
 		padding-top: 2.5rem;

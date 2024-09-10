@@ -1,14 +1,15 @@
 .connect-btn {
-	background-color: $TEAL;
+	background-color: var(--color-tertiary);
 	border-radius: 6px;
 	border: none;
+	color: var(--color-primary);
 	cursor: pointer;
 	font-weight: 550;
 	padding: 10px 12px;
 	width: 100px;
 
 	&:hover {
-		background-color: $TEAL_50;
+		background-color: var(--color-tertiary);
 		transition: background-color 0.2s;
 	}
 }
@@ -18,6 +19,7 @@
 	background-color: transparent;
 	border-radius: 6px;
 	border: none;
+	color: var(--color-secondary);
 	cursor: pointer;
 	display: flex;
 	font-weight: 550;
@@ -33,38 +35,41 @@
 }
 
 .shadow-btn {
-	background-color: $TEAL;
+	background-color: var(--color-tertiary);
 	border-radius: 8px;
 	border: none;
+	color: var(--color-primary);
 	cursor: pointer;
 	font-weight: 550;
 	min-width: 100px;
 	padding: 12px;
 
 	&:hover {
-		box-shadow: 0px 0px 16px $TEAL;
+		box-shadow: 0px 0px 16px var(--color-tertiary);
 		transform: scale(1.01);
+		transition: transform 0.1s ease;
 	}
 }
 
 .power-btn {
 	align-items: center;
-	background-color: $LIGHT_TEAL_50;
-	border: 1px solid $TEAL;
+	background-color: var(--color-primary);
+	border: 1px solid var(--color-accent);
 	border-radius: 12px;
-	box-shadow: 0 2px $TEAL;
+	box-shadow: 0 2px var(--color-accent);
+	color: var(--color-secondary);
 	cursor: pointer;
 	display: flex;
 	gap: 0.5rem;
 	padding: 12px 20px;
 
 	&:hover {
-		box-shadow: 0 4px $TEAL;
+		box-shadow: 0 4px var(--color-accent);
 	}
 
 	&:disabled {
-		border: 1px solid $DEEP_BLUE_25;
-		box-shadow: 0 2px $DEEP_BLUE_25;
+		border: 1px solid var(--color-tertiary);
+		box-shadow: 0 2px var(--color-tertiary);
 	}
 
 	img {
@@ -76,11 +81,12 @@
 .table-filter-btn {
 	background-color: transparent;
 	border: none;
+	color: var(--color-secondary);
 	cursor: pointer;
 	font-size: 14px;
 
 	&:hover {
-		border-bottom: 2px solid $TEAL_50;
+		border-bottom: 2px solid var(--color-tertiary);
 		margin-bottom: -2px;
 	}
 }
@@ -96,7 +102,7 @@
 
 	&:hover:not(:disabled) {
 		border-radius: 8px;
-		border: 1px solid $DEEP_BLUE_25;
+		border: 1px solid var(--color-secondary);
 		cursor: pointer;
 	}
 
@@ -129,14 +135,14 @@
 }
 
 .cancel-btn {
-	background-color: $DEEP_BLUE_10;
+	background-color: var(--color-secondary);
 	border: none;
 	border-radius: 8px;
 	cursor: pointer;
 	padding: 0.75rem;
 
 	&:hover {
-		background-color: $DEEP_BLUE_25;
+		background-color: var(--color-accent);
 	}
 }
 

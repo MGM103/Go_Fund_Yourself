@@ -114,10 +114,9 @@
 </div>
 
 <style scoped lang="scss">
-	@import '../styles/constants.scss';
 	.modal {
 		align-items: flex-start;
-		background-color: $LIGHT_TEAL_25;
+		background-color: var(--color-primary);
 		border-radius: 8px;
 		display: flex;
 		flex-direction: column;

@@ -94,8 +94,6 @@
 </div>
 
 <style scoped lang="scss">
-	@import '../lib/styles/constants.scss';
-
 	section {
 		display: flex;
 		flex-direction: column;
@@ -127,9 +125,12 @@
 		gap: 2.5rem;
 
 		.section-description-card {
+			background-color: var(--color-pre-primary);
 			border-radius: 20px;
-			border-top: 4px solid $TEAL_25;
-			box-shadow: 0px 12px 12px #00000015;
+			border-top: 4px solid var(--color-accent);
+			box-shadow:
+				0 2px 2px var(--color-shadow-a),
+				0 4px 4px var(--color-shadow-b);
 			flex: 1;
 			padding: 2rem;
 
@@ -145,9 +146,12 @@
 
 			.section-icon-card {
 				align-items: center;
+				background-color: var(--color-pre-primary);
 				border-radius: 20px;
-				border-top: 4px solid $TEAL_25;
-				box-shadow: 0px 12px 12px #00000015;
+				border-top: 4px solid var(--color-accent);
+				box-shadow:
+					0 2px 2px var(--color-shadow-a),
+					0 4px 4px var(--color-shadow-b);
 				display: flex;
 				flex-direction: column;
 				flex: 1;

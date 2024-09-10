@@ -147,7 +147,6 @@
 </div>
 
 <style scoped lang="scss">
-	@import '../../../../lib/styles/constants.scss';
 	.page-container {
 		.header-section {
 			align-items: center;
@@ -162,7 +161,7 @@
 			gap: 2rem;
 
 			.fund-raise-form {
-				background-color: $LIGHT_TEAL;
+				background-color: var(--color-primary);
 				border-radius: 8px;
 				display: flex;
 				flex-direction: column;
@@ -189,7 +188,7 @@
 				}
 
 				.raise-statistics {
-					background-color: $LIGHT_TEAL;
+					background-color: var(--color-primary);
 					border-radius: 8px;
 					padding: 1rem 2.5rem;
 
@@ -213,7 +212,7 @@
 				}
 
 				.top-funders {
-					background-color: $LIGHT_TEAL;
+					background-color: var(--color-primary);
 					border-radius: 8px;
 					padding: 1rem 2.5rem;
 
@@ -230,7 +229,7 @@
 				}
 
 				.all-funders {
-					background-color: $LIGHT_TEAL;
+					background-color: var(--color-primary);
 					border-radius: 8px;
 					padding: 1rem 2.5rem;
 
@@ -283,7 +282,7 @@
 
 			&:hover {
 				border-radius: 8px;
-				border: 1px solid $DEEP_BLUE_25;
+				border: 1px solid var(--color-secondary);
 			}
 
 			img {

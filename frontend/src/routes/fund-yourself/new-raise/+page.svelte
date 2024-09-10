@@ -137,15 +137,13 @@
 </div>
 
 <style scoped lang="scss">
-	@import '../../../lib/styles/constants.scss';
-
 	.content-container {
 		h1 {
 			padding: 2.5rem 0;
 		}
 
 		.form-container {
-			background-color: $LIGHT_TEAL;
+			background-color: var(--color-primary);
 			border-radius: 8px;
 			padding: 2.5rem;
 

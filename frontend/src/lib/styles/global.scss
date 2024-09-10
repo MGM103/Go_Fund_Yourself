@@ -2,6 +2,28 @@
 @import 'typography';
 @import './components/_buttons';
 
-body {
-	background-color: $LIGHT_TEAL_25;
+:root {
+	--color-primary: hsl(220, 50%, 90%);
+	--color-pre-primary: hsl(220, 50%, 95%);
+	--color-secondary: hsl(220, 50%, 10%);
+	--color-shadow-a: hsla(220, 50%, 10%, 0.3);
+	--color-shadow-b: hsla(220, 50%, 10%, 0.15);
+	--color-tertiary: hsl(280, 80%, 20%);
+	--color-accent: hsl(160, 80%, 20%);
+
+	background-color: var(--color-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-primary: hsl(220, 50%, 10%);
+		--color-pre-primary: hsl(220, 50%, 15%);
+		--color-secondary: hsl(220, 50%, 90%);
+		--color-shadow-a: hsla(220, 50%, 90%, 0.3);
+		--color-shadow-b: hsla(220, 50%, 90%, 0.15);
+		--color-tertiary: hsl(280, 80%, 80%);
+		--color-accent: hsl(160, 80%, 80%);
+
+		color: var(--color-secondary);
+	}
 }

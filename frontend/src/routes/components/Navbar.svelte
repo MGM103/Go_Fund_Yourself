@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import {
 		connected,
 		configuredConnectors,
@@ -9,6 +10,18 @@
 	} from 'svelte-wagmi';
 	import { connect } from '@wagmi/core';
 	import { account } from '$lib/assets';
+
+	// STATE VARIABLES
+	let navBar;
+
+	// LIFECYCLE
+	onMount(() => {
+		window.addEventListener('scroll', updateNavbarShadow);
+
+		return () => {
+			window.removeEventListener('scroll', updateNavbarShadow);
+		};
+	});
 
 	// FUNCTIONS
 	const connectWallet = async () => {
@@ -22,9 +35,19 @@
 	const disconnectWallet = async () => {
 		await disconnectWagmi();
 	};
+
+	const updateNavbarShadow = () => {
+		const scrollTop = window.scrollY;
+
+		if (scrollTop > 0) {
+			navBar.style.setProperty('--nav-shadow', '0 -8px 24px var(--color-secondary)');
+		} else {
+			navBar.style.setProperty('--nav-shadow', 'none');
+		}
+	};
 </script>
 
-<nav>
+<nav bind:this={navBar}>
 	<div class="title-and-links">
 		<h2><a id="nav-logo" href="/">Go Fund Yourself</a></h2>
 		<ul>
@@ -43,15 +66,13 @@
 			{#if $loading}
 				loading...
 			{:else}
-				connect
+				Connect
 			{/if}
 		</button>
 	{/if}
 </nav>
 
 <style scoped lang="scss">
-	@import '../../lib/styles/constants.scss';
-
 	nav {
 		align-items: center;
 		display: flex;
@@ -87,7 +108,7 @@
 			}
 
 			a {
-				color: black;
+				color: var(--color-secondary);
 				text-decoration: none;
 
 				&:not(#nav-logo) {
@@ -96,7 +117,7 @@
 
 				&:hover:not(#nav-logo) {
 					transform: scale(1.025);
-					transition: transform 0.1s;
+					transition: transform 0.1s ease;
 				}
 			}
 		}
@@ -108,13 +129,14 @@
 
 		&::before {
 			content: '';
-			background-color: $LIGHT_TEAL;
-			box-shadow: 0 6px 12px 0 rgba($color: #000000, $alpha: 0.1);
+			background-color: var(--color-primary);
+			box-shadow: var(--nav-shadow);
 			height: 100%;
 			top: 0;
 			left: 50%;
 			position: absolute;
 			transform: translateX(-50%);
+			transition: box-shadow 0.5s ease;
 			width: 100vw;
 			z-index: 0;
 		}
