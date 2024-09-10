@@ -1,8 +1,8 @@
 <script>
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import { connected, wagmiConfig } from 'svelte-wagmi';
-	import { readContract, watchContractEvent, writeContract } from '@wagmi/core';
-	import { formatEther, parseEther } from 'viem';
+	import { readContract, waitForTransactionReceipt, writeContract } from '@wagmi/core';
+	import { formatEther, hexToNumber, parseEther } from 'viem';
 	import {
 		FUND_ME_ADDRESS,
 		FUND_ME_EVENTS,
@@ -31,10 +31,6 @@
 		ethPrice = formatEther(ethPriceInGwei);
 	});
 
-	onDestroy(() => {
-		unwatch();
-	});
-
 	// FUNCTIONS
 	async function handleSubmit(event) {
 		try {
@@ -42,7 +38,31 @@
 			const fundRaiseTitle = formData.get('FundRaiseTitle');
 			const fundRaiseGoalAmount = formData.get('FundRaiseGoalAmount');
 
-			await createNewFundRaise(fundRaiseTitle, parseEther(fundRaiseGoalAmount));
+			const txnHash = await createNewFundRaise(fundRaiseTitle, parseEther(fundRaiseGoalAmount));
+			const txnReceipt = await waitForTransactionReceipt($wagmiConfig, {
+				hash: txnHash
+			});
+
+			const id = hexToNumber(txnReceipt.logs[0].topics[1]);
+			const description = textAreaContent;
+
+			try {
+				const response = await fetch(`${$page.url.pathname}`, {
+					method: 'POST',
+					body: JSON.stringify({ id, description }),
+					headers: {
+						'content-type': 'application/json'
+					}
+				});
+
+				if (!response.ok) {
+					throw new Error('Failed to add description to db');
+				}
+
+				goto('/fund-yourself');
+			} catch (err) {
+				console.error('Insertion to db failed', err);
+			}
 		} catch (err) {
 			console.error('Error during form submission:', err);
 		}
@@ -62,40 +82,6 @@
 	function updateCharCounter(event) {
 		textAreaContent = event.target.value;
 	}
-
-	// WATCHERS
-	const unwatch = watchContractEvent($wagmiConfig, {
-		abi,
-		address: FUND_ME_ADDRESS,
-		eventName: FUND_ME_EVENTS.CREATE_FUND_RAISE,
-		async onLogs(logs) {
-			if (logs) {
-				const id = Number(logs[0].args?.id);
-				const description = textAreaContent;
-
-				try {
-					const response = await fetch(`${$page.url.pathname}`, {
-						method: 'POST',
-						body: JSON.stringify({ id, description }),
-						headers: {
-							'content-type': 'application/json'
-						}
-					});
-
-					if (!response.ok) {
-						throw new Error('Failed to add description to db');
-					}
-
-					goto('/fund-yourself');
-				} catch (err) {
-					console.error('Insertion to db failed', err);
-				}
-			}
-		},
-		onError(err) {
-			console.log(err);
-		}
-	});
 </script>
 
 <div class="content-container">
