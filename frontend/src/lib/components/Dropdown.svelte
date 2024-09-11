@@ -42,9 +42,10 @@
 	}
 
 	select {
-		background-color: transparent;
+		background-color: var(--color-pre-primary);
 		border: 1px solid var(--color-tertiary);
 		border-radius: 8px;
+		cursor: pointer;
 		color: var(--color-secondary);
 		padding: 6px 12px;
 	}

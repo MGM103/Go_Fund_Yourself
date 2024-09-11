@@ -4,7 +4,7 @@
 	import { goto } from '$app/navigation';
 	import HomeContentSection from './components/HomeContentSection.svelte';
 	import typewriter from '$lib';
-	import { aid, anonymous, chains, globe } from '$lib/assets';
+	import { AnonymousSvg, ChainsCrossedSvg, FirstAidSvg, GlobeSvg } from '$lib/assets';
 
 	// STATE VARIABLES
 	let landingVisible = false;
@@ -53,11 +53,11 @@
 			</div>
 			<div class="section-icon-container">
 				<div in:fade={{ delay: 300, duration: 550 }} out:fade class="section-icon-card">
-					<img src={globe} alt="globe icon" />
+					<GlobeSvg />
 					<p>Raise globally</p>
 				</div>
 				<div in:fade={{ delay: 500, duration: 550 }} out:fade class="section-icon-card">
-					<img src={chains} alt="chain icon" />
+					<ChainsCrossedSvg />
 					<p>Raise without censorship</p>
 				</div>
 			</div>
@@ -81,11 +81,11 @@
 			</div>
 			<div class="section-icon-container">
 				<div in:fade={{ delay: 300, duration: 550 }} out:fade class="section-icon-card">
-					<img src={aid} alt="first-aid kit icon" />
+					<FirstAidSvg />
 					<p>Aid communities <br /> across the world</p>
 				</div>
 				<div in:fade={{ delay: 500, duration: 550 }} out:fade class="section-icon-card">
-					<img src={anonymous} alt="anonymous icon" />
+					<AnonymousSvg />
 					<p>Pseudo-anonymous <br /> donations by default</p>
 				</div>
 			</div>

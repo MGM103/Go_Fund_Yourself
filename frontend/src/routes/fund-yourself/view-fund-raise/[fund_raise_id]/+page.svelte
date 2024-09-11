@@ -7,7 +7,7 @@
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
 	import { ProgressIndicator } from '$lib/components';
-	import { bronzeMedal, edit, goldMedal, leftArrow, save, silverMedal } from '$lib/assets';
+	import { bronzeMedal, EditSvg, goldMedal, LeftArrowSvg, SaveSvg, silverMedal } from '$lib/assets';
 	import { convertAddressToStrAbbreviated } from '$lib/utils';
 
 	//PROPS
@@ -89,12 +89,12 @@
 				use:enhance={() => handleDescriptionUpdate}
 			>
 				{#if descriptionInputEnabled}
-					<button type="submit"><img src={save} alt="save-icon" /></button>
+					<button type="submit"><SaveSvg /></button>
 				{:else}
 					<button
 						type="button"
 						on:click={() => (descriptionInputEnabled = !descriptionInputEnabled)}
-						><img src={edit} alt="edit-icon" /></button
+						><EditSvg /></button
 					>
 				{/if}
 				<label
@@ -141,7 +141,7 @@
 		</div>
 	</div>
 	<a href="/fund-yourself" class="back-btn">
-		<img src={leftArrow} alt="left-arrow" />
+		<LeftArrowSvg />
 		back</a
 	>
 </div>
@@ -161,8 +161,9 @@
 			gap: 2rem;
 
 			.fund-raise-form {
-				background-color: var(--color-primary);
+				background-color: var(--color-pre-primary);
 				border-radius: 8px;
+				box-shadow: 0 0px 2px var(--color-shadow-a);
 				display: flex;
 				flex-direction: column;
 				flex: 2;
@@ -188,8 +189,9 @@
 				}
 
 				.raise-statistics {
-					background-color: var(--color-primary);
+					background-color: var(--color-pre-primary);
 					border-radius: 8px;
+					box-shadow: 0 0px 2px var(--color-shadow-a);
 					padding: 1rem 2.5rem;
 
 					.progress-info {
@@ -212,8 +214,9 @@
 				}
 
 				.top-funders {
-					background-color: var(--color-primary);
+					background-color: var(--color-pre-primary);
 					border-radius: 8px;
+					box-shadow: 0 0px 2px var(--color-shadow-a);
 					padding: 1rem 2.5rem;
 
 					.top-funder {
@@ -221,7 +224,8 @@
 						display: flex;
 						gap: 1rem;
 
-						img {
+						img,
+						svg {
 							max-height: 1.5rem;
 							max-width: 1.5rem;
 						}
@@ -229,8 +233,9 @@
 				}
 
 				.all-funders {
-					background-color: var(--color-primary);
+					background-color: var(--color-pre-primary);
 					border-radius: 8px;
+					box-shadow: 0 0px 2px var(--color-shadow-a);
 					padding: 1rem 2.5rem;
 
 					.funder-addrs {
@@ -259,15 +264,21 @@
 			font-weight: 500;
 
 			textarea {
+				background-color: var(--color-surface-1);
 				border-radius: 8px;
-				border: 1px solid grey;
+				border: 1px solid var(--color-primary);
 				box-sizing: border-box;
+				color: var(--color-secondary);
 				font-size: 0.9rem;
 				height: 300px;
 				margin: 1rem 0;
 				padding-bottom: 1.5rem;
 				padding: 0.33rem 0.5rem;
 				resize: none;
+
+				&:disabled {
+					color: var(--color-disabled);
+				}
 			}
 		}
 
@@ -285,7 +296,8 @@
 				border: 1px solid var(--color-secondary);
 			}
 
-			img {
+			img,
+			svg {
 				max-height: 1.25rem;
 				max-width: 1.25rem;
 			}

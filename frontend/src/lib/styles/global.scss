@@ -5,11 +5,13 @@
 :root {
 	--color-primary: hsl(220, 50%, 90%);
 	--color-pre-primary: hsl(220, 50%, 95%);
+	--color-surface-1: hsl(220, 50%, 100%);
 	--color-secondary: hsl(220, 50%, 10%);
+	--color-tertiary: hsl(280, 80%, 20%);
 	--color-shadow-a: hsla(220, 50%, 10%, 0.3);
 	--color-shadow-b: hsla(220, 50%, 10%, 0.15);
-	--color-tertiary: hsl(280, 80%, 20%);
 	--color-accent: hsl(160, 80%, 20%);
+	--color-disabled: hsl(220, 50%, 35%);
 
 	background-color: var(--color-primary);
 }
@@ -18,11 +20,13 @@
 	:root {
 		--color-primary: hsl(220, 50%, 10%);
 		--color-pre-primary: hsl(220, 50%, 15%);
+		--color-surface-1: hsl(220, 50%, 20%);
 		--color-secondary: hsl(220, 50%, 90%);
+		--color-tertiary: hsl(280, 80%, 80%);
 		--color-shadow-a: hsla(220, 50%, 90%, 0.3);
 		--color-shadow-b: hsla(220, 50%, 90%, 0.15);
-		--color-tertiary: hsl(280, 80%, 80%);
 		--color-accent: hsl(160, 80%, 80%);
+		--color-disabled: hsl(220, 50%, 75%);
 
 		color: var(--color-secondary);
 	}

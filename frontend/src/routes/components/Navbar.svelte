@@ -9,7 +9,7 @@
 		wagmiConfig
 	} from 'svelte-wagmi';
 	import { connect } from '@wagmi/core';
-	import { account } from '$lib/assets';
+	import { AccountSvg } from '$lib/assets';
 
 	// STATE VARIABLES
 	let navBar;
@@ -58,7 +58,7 @@
 
 	{#if $connected}
 		<button class="connected-btn" on:click={disconnectWallet} title="Disconnect wallet">
-			<img src={account} alt="account-icon" />
+			<AccountSvg />
 			{`${$signerAddress.slice(0, 5)}...${$signerAddress.slice(-4)}`}
 		</button>
 	{:else}

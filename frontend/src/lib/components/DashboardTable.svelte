@@ -1,7 +1,7 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { leftArrow, rightArrow } from '$lib/assets';
+	import { LeftArrowSvg, RightArrowSvg } from '$lib/assets';
 	import { toCamelCase } from '$lib/utils';
 	import Dropdown from './Dropdown.svelte';
 
@@ -110,12 +110,12 @@
 			on:click={() => updateTablePage(currentPage - 1)}
 			disabled={prevBtnDisabled}
 		>
-			<img src={leftArrow} alt="left-arrow-icon" />
+			<LeftArrowSvg />
 			Prev</button
 		>
 		<button class="pagination-btn" on:click={() => updateTablePage()} disabled={nextBtnDisabled}>
 			Next
-			<img src={rightArrow} alt="right-arrow-icon" />
+			<RightArrowSvg />
 		</button>
 	</div>
 </div>
@@ -145,15 +145,16 @@
 		.dashboard-table {
 			display: flex;
 			flex-direction: column;
-			gap: 0.25rem;
+			gap: 0.75rem;
 			padding: 1rem 0;
 
 			.fund {
 				align-items: center;
+				background-color: var(--color-pre-primary);
 				box-sizing: border-box;
 				border-radius: 8px;
 				border: 2px solid transparent; /* Adjust border size as necessary */
-				box-shadow: 0px 0px 4px #00000015;
+				box-shadow: 0px 0px 3px 0px var(--color-shadow-a);
 				cursor: pointer;
 				display: flex;
 				justify-content: space-between;
@@ -165,8 +166,8 @@
 
 				&:hover {
 					background:
-						linear-gradient(var(--color-secondary), var(--color-tertiary)) padding-box,
-						linear-gradient(0deg, var(--color-secondary) 0%, var(--color-secondary) 100%) border-box;
+						linear-gradient(var(--color-pre-primary), var(--color-pre-primary)) padding-box,
+						linear-gradient(0deg, var(--color-tertiary) 0%, var(--color-tertiary) 100%) border-box;
 					border-radius: 8px;
 				}
 
@@ -185,6 +186,7 @@
 			align-items: center;
 			display: flex;
 			justify-content: space-between;
+			margin-bottom: 1rem;
 			padding: 1rem;
 		}
 	}

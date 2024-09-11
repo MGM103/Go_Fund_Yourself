@@ -34,17 +34,17 @@
 
 <style>
 	.progress-bg {
-		stroke: #e6e6e6; /* Background circle color */
+		stroke: var(--color-primary); /* Background circle color */
 	}
 
 	.progress {
-		stroke: #007bff; /* Progress circle color */
+		stroke: var(--color-tertiary); /* Progress circle color */
 		transition: stroke-dashoffset 0.5s ease; /* Animation for smooth progress */
 		transform-origin: center; /* Keep transformation around the center */
 	}
 
 	.progress-text {
 		font-size: 18px;
-		fill: #333; /* Text color */
+		fill: var(--color-secondary); /* Text color */
 	}
 </style>

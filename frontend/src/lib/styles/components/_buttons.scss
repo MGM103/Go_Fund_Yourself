@@ -46,14 +46,12 @@
 
 	&:hover {
 		box-shadow: 0px 0px 16px var(--color-tertiary);
-		transform: scale(1.01);
-		transition: transform 0.1s ease;
 	}
 }
 
 .power-btn {
 	align-items: center;
-	background-color: var(--color-primary);
+	background-color: var(--color-pre-primary);
 	border: 1px solid var(--color-accent);
 	border-radius: 12px;
 	box-shadow: 0 2px var(--color-accent);
@@ -95,6 +93,7 @@
 	align-items: center;
 	background-color: transparent;
 	border: 1px solid transparent;
+	color: var(--color-secondary);
 	display: flex;
 	font-size: 14px;
 	gap: 0.5rem;
@@ -106,7 +105,12 @@
 		cursor: pointer;
 	}
 
-	img {
+	&:disabled {
+		color: var(--color-disabled);
+	}
+
+	img,
+	svg {
 		max-height: 1rem;
 		max-width: 1rem;
 	}
@@ -115,7 +119,7 @@
 .back-btn {
 	align-items: center;
 	background-color: transparent;
-	color: black;
+	color: var(--color-secondary);
 	display: flex;
 	font-size: 14px;
 	gap: 0.25rem;
@@ -128,21 +132,23 @@
 		cursor: pointer;
 	}
 
-	img {
+	img,
+	svg {
 		max-height: 0.65rem;
 		max-width: 0.65rem;
 	}
 }
 
 .cancel-btn {
-	background-color: var(--color-secondary);
-	border: none;
+	background-color: transparent;
+	border: 1px solid var(--color-secondary);
 	border-radius: 8px;
+	color: var(--color-secondary);
 	cursor: pointer;
 	padding: 0.75rem;
 
 	&:hover {
-		background-color: var(--color-accent);
+		background-color: var(--color-primary);
 	}
 }
 

@@ -5,7 +5,7 @@
 	import abi from '$lib/contractData/abi/FundMe.json';
 	import { FUND_ME_ADDRESS, FUND_ME_WRITES } from '$lib/contractData/FundMeContract';
 	import { Modal, ProgressIndicator } from '$lib/components';
-	import { bronzeMedal, goldMedal, leftArrow, silverMedal } from '$lib/assets';
+	import { bronzeMedal, goldMedal, LeftArrowSvg, silverMedal } from '$lib/assets';
 	import { convertAddressToStrAbbreviated } from '$lib/utils';
 
 	// PROPS
@@ -118,7 +118,7 @@
 	</div>
 </div>
 <a href="/fund-someone" class="back-btn">
-	<img src={leftArrow} alt="left-arrow" />
+	<LeftArrowSvg />
 	back</a
 >
 
@@ -151,6 +151,8 @@
 		}
 
 		.fund-raise-details {
+			background-color: var(--color-pre-primary);
+			box-shadow: 0 0px 2px var(--color-shadow-a);
 			grid-area: fund-raise-details;
 			overflow: hidden;
 			word-wrap: break-word;
@@ -167,6 +169,8 @@
 		}
 
 		.progress {
+			background-color: var(--color-pre-primary);
+			box-shadow: 0 0px 2px var(--color-shadow-a);
 			grid-area: progress;
 
 			.progress-info {
@@ -189,6 +193,8 @@
 		}
 
 		.top-funders {
+			background-color: var(--color-pre-primary);
+			box-shadow: 0 0px 2px var(--color-shadow-a);
 			grid-area: top-funders;
 
 			.top-funder {
@@ -205,6 +211,8 @@
 		}
 
 		.all-funders {
+			background-color: var(--color-pre-primary);
+			box-shadow: 0 0px 2px var(--color-shadow-a);
 			grid-area: all-funders;
 
 			.all-funders-list {

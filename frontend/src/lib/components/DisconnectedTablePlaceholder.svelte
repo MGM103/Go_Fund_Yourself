@@ -19,8 +19,9 @@
 <style scoped lang="scss">
 	.placeholder-container {
 		align-items: center;
-		background-color: var(--color-tertiary);
+		background-color: var(--color-pre-primary);
 		border-radius: 12px;
+		box-shadow: 0 0px 2px var(--color-shadow-a);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;

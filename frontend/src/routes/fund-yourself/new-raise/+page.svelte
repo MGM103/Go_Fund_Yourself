@@ -5,12 +5,11 @@
 	import { formatEther, hexToNumber, parseEther } from 'viem';
 	import {
 		FUND_ME_ADDRESS,
-		FUND_ME_EVENTS,
 		FUND_ME_READS,
 		FUND_ME_WRITES
 	} from '$lib/contractData/FundMeContract.js';
 	import abi from '$lib/contractData/abi/FundMe.json';
-	import { leftArrow } from '$lib/assets';
+	import { LeftArrowSvg } from '$lib/assets';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
@@ -127,9 +126,7 @@
 				></textarea><span>{textAreaContent.length} / {textAreaMaxLength}</span>
 			</label>
 			<div class="btn-container">
-				<a class="back-btn" href="/fund-yourself"
-					><img src={leftArrow} alt="left-arrow-icon" />back</a
-				>
+				<a class="back-btn" href="/fund-yourself"><LeftArrowSvg />back</a>
 				<button class="power-btn" type="submit" disabled={!$connected}>Create</button>
 			</div>
 		</form>
@@ -143,8 +140,9 @@
 		}
 
 		.form-container {
-			background-color: var(--color-primary);
+			background-color: var(--color-pre-primary);
 			border-radius: 8px;
+			box-shadow: 0 0px 2px var(--color-shadow-a);
 			padding: 2.5rem;
 
 			h2 {
@@ -173,8 +171,10 @@
 
 				input,
 				textarea {
-					border: 1px solid grey;
+					background-color: var(--color-surface-1);
+					border: 1px solid var(--color-primary);
 					border-radius: 8px;
+					color: var(--color-secondary);
 					margin-top: 0.5rem;
 					padding: 0.33rem 0.5rem;
 				}
@@ -208,5 +208,9 @@
 				}
 			}
 		}
+	}
+
+	.power-btn {
+		background-color: var(--color-surface-1);
 	}
 </style>

@@ -4,7 +4,7 @@
 	import { readContract } from '@wagmi/core';
 	import { formatEther } from 'viem';
 	import abi from '$lib/contractData/abi/FundMe.json';
-	import { add } from '$lib/assets';
+	import { AddSvg } from '$lib/assets';
 	import { goto } from '$app/navigation';
 	import { DashboardTable, DisconnectedTablePlaceholder } from '$lib/components';
 	import { FUND_ME_ADDRESS, FUND_ME_READS } from '$lib/contractData/FundMeContract.js';
@@ -143,7 +143,7 @@
 	<div class="create-new-raise">
 		<h1>Fund yourself</h1>
 		<button class="power-btn" on:click={() => goto('/fund-yourself/new-raise')}>
-			<img src={add} alt="add-icon" />
+			<AddSvg />
 			New fund raise</button
 		>
 	</div>
@@ -187,8 +187,9 @@
 
 	.fund-raise-analytics {
 		align-items: center;
+		background-color: var(--color-pre-primary);
 		border-radius: 12px;
-		border-top: 4px solid var(--color-accent);
+		border-top: 4px solid var(--color-tertiary);
 		box-shadow:
 			0 2px 2px var(--color-shadow-a),
 			0 4px 4px var(--color-shadow-b);

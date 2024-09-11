@@ -97,8 +97,10 @@
 				/>
 			</div>
 			<div class="donation-amount-display">
-				<span>{amount} eth</span>
-				<p>≈ {formatToCurrency(amountUsd)} (USD)</p>
+				<p>
+					<span>{amount} eth</span> <br />
+					≈ {formatToCurrency(amountUsd)}
+				</p>
 				<button class="max-btn" on:click={() => handleMaxBalance()}>max</button>
 			</div>
 		</div>
@@ -116,7 +118,7 @@
 <style scoped lang="scss">
 	.modal {
 		align-items: flex-start;
-		background-color: var(--color-primary);
+		background-color: var(--color-pre-primary);
 		border-radius: 8px;
 		display: flex;
 		flex-direction: column;
@@ -135,10 +137,19 @@
 			width: 100%;
 
 			.input-group {
+				align-items: center;
 				display: flex;
 				flex: 1;
 				flex-direction: column;
 				gap: 0.25rem;
+				justify-content: center;
+				margin-top: 1.5rem;
+
+				input {
+					border: none;
+					border-radius: 8px;
+					padding: 0.25rem;
+				}
 			}
 
 			.donation-amount-display {
@@ -147,6 +158,7 @@
 
 				button {
 					bottom: 0.25rem;
+					color: var(--color-secondary);
 					right: 0;
 					position: absolute;
 				}
