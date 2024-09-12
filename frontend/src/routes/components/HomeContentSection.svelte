@@ -41,8 +41,8 @@
 	section {
 		display: flex;
 		flex-direction: column;
-		height: 50vh;
-		margin: 4rem 0;
+		min-height: 50vh;
+		padding-block: 4rem;
 		position: relative;
 	}
 </style>

@@ -20,17 +20,25 @@
 	});
 </script>
 
-<Navbar />
-<div id="main-content">
+<main id="main-content">
+	<Navbar />
 	<slot></slot>
-</div>
-<Footer />
+	<Footer />
+</main>
 
 <style scoped lang="scss">
 	@import '../lib/styles/constants.scss';
 
 	#main-content {
-		max-width: 1080px;
-		margin: 0 auto;
+		height: 100%;
+		max-inline-size: 1080px;
+		display: grid;
+		grid-template-rows: auto 1fr auto;
+		margin-inline: auto;
+		padding-inline: 2rem;
+
+		@media (min-width: 1080px) {
+			padding-inline: 0;
+		}
 	}
 </style>

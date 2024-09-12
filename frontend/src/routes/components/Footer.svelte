@@ -29,12 +29,9 @@
 		color: var(--color-primary);
 		display: flex;
 		flex-direction: column;
-		margin: 0 auto;
-		max-width: 1080px;
 		padding-top: 2.5rem;
 		padding-bottom: 2.5rem;
-		position: sticky;
-		top: 100vh;
+		position: relative;
 
 		#bottom-row {
 			display: flex;

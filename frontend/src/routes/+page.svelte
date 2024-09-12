@@ -94,22 +94,22 @@
 </div>
 
 <style scoped lang="scss">
-	section {
-		display: flex;
-		flex-direction: column;
-		height: 50vh;
-		position: relative;
-	}
-
 	.landing-section {
 		align-items: center;
+		display: flex;
 		height: 80vh;
+		flex-direction: column;
 		justify-content: center;
 		margin: auto;
+		position: relative;
 
 		h1 {
 			font-size: 108px;
 			margin: 0;
+
+			@media (max-width: 680px) {
+				font-size: 69px;
+			}
 		}
 
 		.call-to-action {
@@ -117,12 +117,24 @@
 			display: flex;
 			gap: 1rem;
 			padding: 2rem 0;
+
+			@media (max-width: 680px) {
+				flex-direction: column;
+
+				p {
+					word-wrap: break-word;
+				}
+			}
 		}
 	}
 
 	.section-container {
 		display: flex;
 		gap: 2.5rem;
+
+		@media (max-width: 680px) {
+			flex-direction: column;
+		}
 
 		.section-description-card {
 			background-color: var(--color-pre-primary);
@@ -144,6 +156,10 @@
 			flex-direction: column;
 			gap: 1rem;
 
+			@media (max-width: 680px) {
+				flex-direction: row;
+			}
+
 			.section-icon-card {
 				align-items: center;
 				background-color: var(--color-pre-primary);
@@ -155,7 +171,7 @@
 				display: flex;
 				flex-direction: column;
 				flex: 1;
-				height: 80px;
+				height: auto;
 				justify-content: center;
 				padding: 1rem;
 
