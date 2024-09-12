@@ -9,6 +9,7 @@ export { default as ChainsCrossedSvg } from './ChainsCrossedSvg.svelte';
 export { default as EditSvg } from './EditSvg.svelte';
 export { default as FirstAidSvg } from './FirstAidSvg.svelte';
 export { default as GlobeSvg } from './GlobeSvg.svelte';
+export { default as HamburgerSvg } from './HamburgerSvg.svelte';
 export { default as LeftArrowSvg } from './LeftArrowSvg.svelte';
 export { default as RightArrowSvg } from './RightArrowSvg.svelte';
 export { default as SaveSvg } from './SaveSvg.svelte';
