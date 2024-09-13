@@ -139,27 +139,30 @@
 	}
 </script>
 
-<div>
+<div class="page-container">
 	<div class="create-new-raise">
 		<h1>Fund yourself</h1>
 		<button class="power-btn" on:click={() => goto('/fund-yourself/new-raise')}>
 			<AddSvg />
-			New fund raise</button
+			<span>New fund raise</span></button
 		>
 	</div>
 
 	<div class="fund-raise-analytics">
 		<div class="analytic">
 			<h2>{totalFundRaises}</h2>
-			<p>Total fund raises</p>
+			<p id="label">Total fund raises</p>
+			<p id="mobile-label"># raises:</p>
 		</div>
 		<div class="analytic">
 			<h2>{totalFunding} eth</h2>
-			<p>Total funding received</p>
+			<p id="label">Total funding received</p>
+			<p id="mobile-label">Funding:</p>
 		</div>
 		<div class="analytic">
 			<h2>{totalDonors}</h2>
-			<p>Total donors</p>
+			<p id="label">Total donors</p>
+			<p id="mobile-label"># donors:</p>
 		</div>
 	</div>
 
@@ -178,11 +181,28 @@
 </div>
 
 <style scoped lang="scss">
+	.page-container {
+		display: grid;
+		grid-template-rows: 0.5fr 1fr auto;
+		gap: 4rem;
+		height: 100%;
+
+		@media (max-width: 680px) {
+			gap: 2rem;
+		}
+	}
+
 	.create-new-raise {
 		align-items: center;
 		display: flex;
 		justify-content: space-between;
-		padding: 2.5rem 0;
+		padding-top: 2.5rem;
+
+		@media (max-width: 680px) {
+			span {
+				display: none;
+			}
+		}
 	}
 
 	.fund-raise-analytics {
@@ -195,8 +215,11 @@
 			0 4px 4px var(--color-shadow-b);
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 4rem;
 		padding: 2rem;
+
+		@media (max-width: 680px) {
+			flex-direction: column;
+		}
 
 		.analytic {
 			align-items: center;
@@ -205,9 +228,29 @@
 			flex-direction: column;
 			flex: 1;
 			justify-content: center;
+			word-wrap: break-word;
+
+			#mobile-label {
+				display: none;
+			}
 
 			&:last-child {
 				border-right: none;
+			}
+
+			@media (max-width: 680px) {
+				border-right: none;
+				flex-direction: row-reverse;
+				gap: 1rem;
+				justify-content: flex-start;
+
+				#label {
+					display: none;
+				}
+
+				#mobile-label {
+					display: unset;
+				}
 			}
 		}
 	}

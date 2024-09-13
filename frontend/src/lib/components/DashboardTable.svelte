@@ -160,6 +160,15 @@
 				justify-content: space-between;
 				padding: 1rem;
 
+				@media (max-width: 680px) {
+					padding: unset;
+					padding-left: 1rem;
+
+					h3 {
+						font-size: 1.075rem;
+					}
+				}
+
 				h3 {
 					margin-right: auto;
 				}
@@ -178,6 +187,10 @@
 					p {
 						min-width: 100px;
 						text-align: center;
+					}
+
+					@media (max-width: 680px) {
+						gap: unset;
 					}
 				}
 			}

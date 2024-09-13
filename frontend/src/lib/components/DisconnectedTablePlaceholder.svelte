@@ -25,7 +25,13 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		margin: 4rem 0;
-		padding: 13.5rem;
+		height: 500px;
+		margin-bottom: 2rem;
+		padding: 2rem;
+		text-align: center;
+
+		@media (max-width: 680px) {
+			height: 250px;
+		}
 	}
 </style>
