@@ -71,7 +71,7 @@ contract FundMe {
     }
 
     function createFundRaise(string calldata fundRaiseDescription, uint256 fundRaiseAmtGoal) public {
-        if (fundRaiseAmtGoal.getConversionRate(s_priceFeed) <= MINIMUM_USD) revert FundMe__InsufficientGoalAmt();
+        if (fundRaiseAmtGoal.getConversionRate(s_priceFeed) < MINIMUM_USD) revert FundMe__InsufficientGoalAmt();
 
         FundRaiseData memory newFundRaise = FundRaiseData({
             id: s_id,
@@ -92,7 +92,7 @@ contract FundMe {
 
     /// @notice Funds our contract based on the ETH/USD price
     function fund(uint256 id) public payable {
-        if (msg.value.getConversionRate(s_priceFeed) <= MINIMUM_USD) revert FundMe__InsufficientDonationAmt();
+        if (msg.value.getConversionRate(s_priceFeed) < MINIMUM_USD) revert FundMe__InsufficientDonationAmt();
         if (id >= s_id) revert FundMe__FundRaiseIdNotFound();
         if (!s_idToFundRaiseData[id].active) revert FundMe__FundRaiseEnded();
 
