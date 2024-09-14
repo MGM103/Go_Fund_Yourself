@@ -115,7 +115,7 @@
 				<h2 class="h4">Progress</h2>
 				<div class="progress-info">
 					<ProgressIndicator progress={(amountRaised / data.goalAmt) * 100} />
-					<p>
+					<p id="progress-description">
 						Your goal was to raise <span>{data.goalAmt} eth</span> and you have currently raised
 						<span>{amountRaised} eth</span>.
 					</p>
@@ -134,7 +134,8 @@
 				<h2 class="h4">All funders</h2>
 				<div class="funder-addrs">
 					{#each data.funders as funder}
-						<p>{funder}</p>
+						<p id="addr">{funder}</p>
+						<p id="mobile-addr">{convertAddressToStrAbbreviated(funder, 7, 7)}</p>
 					{/each}
 				</div>
 			</div>
@@ -158,6 +159,7 @@
 
 		.fund-raise-details {
 			display: flex;
+			flex-wrap: wrap;
 			gap: 2rem;
 
 			.fund-raise-form {
@@ -166,7 +168,7 @@
 				box-shadow: 0 0px 2px var(--color-shadow-a);
 				display: flex;
 				flex-direction: column;
-				flex: 2;
+				flex-grow: 2;
 				padding: 1rem 2.5rem;
 
 				span {
@@ -210,6 +212,14 @@
 						p {
 							flex: 2;
 						}
+
+						@media (max-width: 400px) {
+							align-items: center;
+							justify-content: center;
+							#progress-description {
+								display: none;
+							}
+						}
 					}
 				}
 
@@ -242,6 +252,21 @@
 						max-height: 150px;
 						overflow-y: auto;
 						padding-right: 1rem;
+
+						#mobile-addr {
+							display: none;
+						}
+
+						@media (max-width: 580px) {
+							#mobile-addr {
+								display: unset;
+								line-height: 1.5rem;
+							}
+
+							#addr {
+								display: none;
+							}
+						}
 					}
 				}
 			}
