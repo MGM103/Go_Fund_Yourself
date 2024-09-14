@@ -6,6 +6,7 @@ out/
 broadcast/
 !/broadcast
 /broadcast/*/31337/
+/broadcast/*/11011/
 /broadcast/**/dry-run/
 
 # Docs
@@ -20,6 +21,3 @@ docs/
 
 #Local vs code settings
 .vscode
-
-# Makefile
-makefile
