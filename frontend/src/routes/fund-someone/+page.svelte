@@ -27,7 +27,7 @@
 	}
 </script>
 
-<div>
+<div id="page-container">
 	<div class="page-title">
 		<h1>Fund someone</h1>
 	</div>
@@ -47,6 +47,9 @@
 </div>
 
 <style scoped lang="scss">
+	#page-container {
+		min-height: 80vh;
+	}
 	.page-title {
 		padding-bottom: 1rem;
 		padding-top: 2.5rem;
