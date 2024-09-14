@@ -135,6 +135,8 @@
 
 <style scoped lang="scss">
 	.content-container {
+		min-height: 80vh;
+
 		h1 {
 			padding: 2.5rem 0;
 		}
@@ -143,6 +145,7 @@
 			background-color: var(--color-pre-primary);
 			border-radius: 8px;
 			box-shadow: 0 0px 2px var(--color-shadow-a);
+			margin-bottom: 4rem;
 			padding: 2.5rem;
 
 			h2 {
@@ -197,6 +200,15 @@
 
 					label {
 						flex: 1;
+					}
+
+					@media (max-width: 580px) {
+						align-items: flex-start;
+						flex-direction: column;
+
+						label {
+							width: 100%;
+						}
 					}
 				}
 
