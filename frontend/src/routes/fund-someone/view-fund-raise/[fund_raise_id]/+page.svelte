@@ -112,7 +112,8 @@
 		<h2 class="h4">All funders</h2>
 		<div class="all-funders-list">
 			{#each data.funders as funder}
-				<p>{funder}</p>
+				<p id="addr">{funder}</p>
+				<p id="mobile-addr">{convertAddressToStrAbbreviated(funder, 7, 7)}<br /></p>
 			{/each}
 		</div>
 	</div>
@@ -139,7 +140,18 @@
 			'fund-raise-details top-funders'
 			'fund-raise-details all-funders';
 		margin-bottom: 2rem;
+		min-height: 80vh;
 		row-gap: 1rem;
+
+		@media (max-width: 950px) {
+			grid-template-columns: 1fr;
+			grid-template-areas:
+				'page-title'
+				'fund-raise-details'
+				'progress '
+				'top-funders '
+				'all-funders';
+		}
 
 		.page-heading {
 			align-items: center;
@@ -219,6 +231,21 @@
 				max-height: 150px;
 				overflow-y: auto;
 				padding-right: 1rem;
+
+				#mobile-addr {
+					display: none;
+				}
+
+				@media (max-width: 550px) {
+					#mobile-addr {
+						display: unset;
+						line-height: 1.5rem;
+					}
+
+					#addr {
+						display: none;
+					}
+				}
 			}
 		}
 	}
