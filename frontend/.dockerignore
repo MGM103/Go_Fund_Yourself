@@ -1,0 +1,8 @@
+/*
+!/src
+!/data
+!/static
+!package-lock.json
+!package.json
+!svelte.config.js
+!vite.config.js

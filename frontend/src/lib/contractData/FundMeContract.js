@@ -1,4 +1,8 @@
-export const FUND_ME_ADDRESS = '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512';
+import { dev } from '$app/environment';
+
+export const FUND_ME_ADDRESS = dev
+	? '0xe7f1725e7734ce288f8367e1bb143e90bb3f0512'
+	: '0xE456Fa060f8Ca9B2D1C59D34CEabF3d48aba434b';
 
 export const FUND_ME_READS = {
 	GET_AMOUNT_DONATED: 'getAddressToAmountFunded',

@@ -3,15 +3,17 @@
 	import Footer from './components/Footer.svelte';
 	import Navbar from './components/Navbar.svelte';
 	import { onMount } from 'svelte';
+	import { dev } from '$app/environment';
 	import { defaultConfig } from 'svelte-wagmi';
 	import { injected } from '@wagmi/core';
-	import { anvil } from 'viem/chains';
+	import { anvil, sepolia } from 'viem/chains';
 	import { PUBLIC_WALLETCONNECT_ID } from '$env/static/public';
 
 	onMount(async () => {
+		console.log(dev);
 		const erckit = defaultConfig({
 			appName: 'GO_FUND_YOURSELF',
-			chains: [anvil],
+			chains: [dev ? anvil : sepolia],
 			connectors: [injected()],
 			walletConnectProjectId: PUBLIC_WALLETCONNECT_ID
 		});

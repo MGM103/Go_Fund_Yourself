@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - '3000:3000'
+    volumes:
+      - sqlite-data:/app/data
+
+volumes:
+  sqlite-data:

@@ -55,3 +55,11 @@ localBlockchainSetup:
 	@forge script script/DeployFundMe.s.sol:DeployFundMe $(NETWORK_ARGS)
 	@forge script script/Interactions.s.sol:CreateFundMe $(NETWORK_ARGS)
 	@forge script script/Interactions.s.sol:FundFundMe $(NETWORK_ARGS)
+
+# Docker commands
+dockerBuild:
+	cd frontend && docker build	--build-arg PUBLIC_WALLET_CONNECT_ID=$(PUBLIC_WALLETCONNECT_ID) --build-arg DB_PATH=${DB_PATH} \
+	-t go-fund-yourself-fe .
+
+dockerRun:
+	cd frontend && docker run -d --name go-fund-yourself-fe -p 3000:3000 -v sqlite-data:/app/data go-fund-yourself-fe
