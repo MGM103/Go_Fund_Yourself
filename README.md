@@ -40,8 +40,16 @@ anvil
 
 In another terminal run the following command to run the deploy script:
 ```
-forge script script/DeployFundMe.s.sol --rpc-url http://127.0.0.1:8545 --private-key <privateKey> --broadcast
+make localBlockchainSetup
 ```
+
+This command will deploy the contracts and perform basic interactions ensuring that there is data that can be observed on the frontend.
+
+If you would like to run the frontend locally, you can use the command:
+```
+cd frontend && npm run dev
+```
+*Please note that anvil must be running for interactions on the frontend to work properly*
 
 ### Deploying on a testnet or mainnet
 You should create a .env file with values for a private key and rpc url and optionally an etherscan api key as below:
