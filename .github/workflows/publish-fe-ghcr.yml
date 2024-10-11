@@ -23,5 +23,5 @@ jobs:
           docker build \
             --build-arg PUBLIC_WALLET_CONNECT_ID=${{ secrets.PUBLIC_WALLET_CONNECT_ID}} \
             --build-arg DB_PATH=${{ secrets.DB_PATH }} \
-            --build-arg SEPOLIA_RPC_URL=${{ secrets.SEPOLIA_RPC_URL }} -t ghcr.io/MGM103/go-fund-yourself-fe:latest .
-          docker push ghcr.io/MGM103/go-fund-yourself-fe:latest
+            --build-arg SEPOLIA_RPC_URL=${{ secrets.SEPOLIA_RPC_URL }} -t ghcr.io/mgm103/go-fund-yourself-fe:latest .
+          docker push ghcr.io/mgm103/go-fund-yourself-fe:latest
