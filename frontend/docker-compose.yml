@@ -5,7 +5,7 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - origin=http://gofundyourself.cash:3000
+      - ORIGIN=http://gofundyourself.cash:3000
     volumes:
       - sqlite-data:/app/data
 
