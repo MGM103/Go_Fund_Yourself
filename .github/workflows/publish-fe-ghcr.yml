@@ -1,9 +1,6 @@
 name: CI publishing of fe on ghcr for vps
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   build:
