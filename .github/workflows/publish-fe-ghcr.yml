@@ -1,0 +1,30 @@
+name: CI publishing of fe on ghcr for vps
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Log into ghcr
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: MGM103
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Build docker image
+        run: |
+          cd frontend
+          docker build 
+            --build-arg PUBLIC_WALLET_CONNECT_ID=${{ secrets.PUBLIC_WALLET_CONNECT_ID}} 
+            --build-arg DB_PATH=${{ secrets.DB_PATH }} 
+            --build-arg SEPOLIA_RPC_URL=${{ secrets.SEPOLIA_RPC_URL }} -t ghcr.io/MGM103/go-fund-yourself-fe:latest .
+          docker push ghcr.io/MGM103/go-fund-yourself:latest
