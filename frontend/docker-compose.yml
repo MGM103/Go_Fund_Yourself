@@ -2,8 +2,6 @@ services:
   server:
     image: ghcr.io/mgm103/go-fund-yourself-fe:latest
     container_name: go-fund-yourself-fe
-    ports:
-      - '3000:3000'
     environment:
       - ORIGIN=https://gofundyourself.cash
     volumes:
