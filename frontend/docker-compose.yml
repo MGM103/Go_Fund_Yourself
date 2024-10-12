@@ -1,9 +1,11 @@
 services:
-  server:
+  app:
     image: ghcr.io/mgm103/go-fund-yourself-fe:latest
     container_name: go-fund-yourself-fe
     environment:
       - ORIGIN=https://gofundyourself.cash
+    expose:
+      - '3000'
     volumes:
       - sqlite-data:/app/data
 
