@@ -4,8 +4,8 @@ services:
     container_name: go-fund-yourself-fe
     environment:
       - ORIGIN=https://gofundyourself.cash
-    expose:
-      - '3000'
+    ports:
+      - "3000:3000"
     volumes:
       - sqlite-data:/app/data
 
