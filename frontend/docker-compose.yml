@@ -5,9 +5,17 @@ services:
     environment:
       - ORIGIN=https://gofundyourself.cash
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - sqlite-data:/app/data
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    command: --interval 60
 
 volumes:
   sqlite-data:
