@@ -83,8 +83,12 @@ ETHERSCAN_API_KEY=<YOUR_ETHERSCAN_API_KEY>
 Deploy using the following command:
 
 ```
-forge script script/DeployFundMe.s.sol --rpc-url $<NETWORK>_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY
+make deploy --network <network_name>
 ```
+
+If you are deploying to anvil locally you do not need to include the `--network` flag.
+
+_Please not that the makefile only currently acknowledges sepolia as an alternate network. You will need to modify the makefile to handle different networks should you want to deploy your contract on a different evm network._
 
 ## Testing
 
