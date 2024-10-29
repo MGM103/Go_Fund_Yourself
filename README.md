@@ -28,7 +28,7 @@ Additionally, a frontend for the smart contract has been created to allow users 
 
 ## Prod details
 
-This app is currently accessible via the url: [gofundyourself.cash](gofundyourself.cash).
+This app is currently accessible via the url: [gofundyourself.cash](https://gofundyourself.cash).
 
 It is running on the `sepolia` testnet and the contract address is [0xE456Fa060f8Ca9B2D1C59D34CEabF3d48aba434b](https://sepolia.etherscan.io/address/0xe456fa060f8ca9b2d1c59d34ceabf3d48aba434b#code).
 
