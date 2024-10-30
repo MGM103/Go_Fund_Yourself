@@ -27,6 +27,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fontsource-variable/ubuntu-sans": "^5.1.0",
 		"@wagmi/connectors": "^5.1.7",
 		"@wagmi/core": "^2.13.4",
 		"better-sqlite3": "^11.2.1",
